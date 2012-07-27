@@ -13,7 +13,7 @@ html {
 body {
   font-family: Arial, Helvetica, clean, sans-serif;
   line-height: 1.5;
-  background-image:url('http://www.watchdogs-game.de/templates/watch_dogs2012/images/bg_body_top.jpg');
+  background-image:url('../images/watchdogs.png');
 }
 h1 {
   font-size: 1.538em;

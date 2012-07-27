@@ -82,21 +82,21 @@
   settings[bigscreen_page_unit]      = 'px'
   settings[bigscreen_sidebar_unit]   = 'px'
   settings[bigscreen_max_width_unit] = 'px'
-  settings[bigscreen_page_width]     = 1115
-  settings[bigscreen_sidebar_first]  = 175
-  settings[bigscreen_sidebar_second] = 305
-  settings[bigscreen_set_max_width]  = 24
-  settings[bigscreen_max_width]      = 1260
+  settings[bigscreen_page_width]     = 1125
+  settings[bigscreen_sidebar_first]  = 160
+  settings[bigscreen_sidebar_second] = 310
+  settings[bigscreen_set_max_width]  = 0
+  settings[bigscreen_max_width]      = 1125 
   settings[bigscreen_media_query]    = 'only screen and (min-width:1025px)'
 
   ; Tablet landscape
   settings[tablet_landscape_layout]         = 'three-col-grail'
-  settings[tablet_landscape_page_unit]      = '%'
-  settings[tablet_landscape_sidebar_unit]   = '%'
+  settings[tablet_landscape_page_unit]      = 'px'
+  settings[tablet_landscape_sidebar_unit]   = 'px'
   settings[tablet_landscape_max_width_unit] = 'px'
-  settings[tablet_landscape_page_width]     = 100
-  settings[tablet_landscape_sidebar_first]  = 20
-  settings[tablet_landscape_sidebar_second] = 20
+  settings[tablet_landscape_page_width]     = 1024
+  settings[tablet_landscape_sidebar_first]  = 120
+  settings[tablet_landscape_sidebar_second] = 200
   settings[tablet_landscape_set_max_width]  = 0
   settings[tablet_landscape_max_width]      = 960
   settings[tablet_landscape_media_query]    = 'only screen and (min-width:769px) and (max-width:1024px)'
