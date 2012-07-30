@@ -7,8 +7,7 @@
 }
 
 .article > header {
-background:#E00000;
-opacity:0.85;
+background:rgba(224,0,0,0.55);
 margin:4px -6px;
 }
 
