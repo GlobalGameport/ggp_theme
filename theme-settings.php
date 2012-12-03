@@ -118,7 +118,7 @@ function ggp_theme_form_system_theme_settings_alter(&$form, &$form_state)  {
     '#size' => 100,
     '#required' => TRUE
   );
-  
+
   $form['#submit'][] = 'ggp_theme_settings_submit'; 
   return $form;
 }
@@ -148,9 +148,9 @@ function ggp_theme_settings_submit($form, &$form_state) {
   // Check for a new uploaded file, and use that if available.
   if ($file = file_save_upload('image_upload')) {
     $file->status = FILE_STATUS_PERMANENT;
-    if ($image = _marinelli_save_image($file)) {
+    //if ($image = _marinelli_save_image($file)) {
       // Put new image into settings
-      $settings[] = $image;
-    }
+     // $settings[] = $image;
+    //}
   }
 }
