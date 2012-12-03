@@ -177,7 +177,7 @@ function ggp_theme_breadcrumb($vars) {
   }
   return '';
 }
-function theme_menu_tree($variables) {
+function ggp_theme_theme_menu_tree($variables) {
   $element = $variables['element'];
 
   $element['#attributes']['class'][] = "menu";
