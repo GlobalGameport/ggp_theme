@@ -128,11 +128,11 @@ line-height: 20px;
 .region-sidebar-first > ul.menu > li > a {
   font-size: 1.1em;
 }
-.region-sidebar-first ul.sub-menu {
+.region-sidebar-first ul.menu > li > ul.menu {
   padding-top: 5px;
   padding-bottom: 5px;
 }
-.region-sidebar-first ul.sub-menu a {
+.region-sidebar-first ul.menu > li > ul.menu a {
   padding: 5px 20px 5px 25px;
 }
 
