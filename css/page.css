@@ -47,7 +47,7 @@
 /* Page title */
 h1#page-title {
   color:#E00000;
-
+  padding:20px 20px 0 20px;
 }
 
 #columns {
@@ -77,6 +77,9 @@ h1#page-title {
 
 #main-content {
 padding:10px 20px;
+}
+#main-content > header {
+  background:rgba(150, 0, 0, 0.6);
 }
 
 /* Footer - the main page footer only */

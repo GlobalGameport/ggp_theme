@@ -102,7 +102,6 @@ margin:0;
   line-height: 14pt;
   color: #dddddd;
   display: block;
-  width: 100%;
   padding: 5px 20px 5px 10px;
   white-space: nowrap;
   font-size: 14px;
@@ -111,7 +110,10 @@ margin:0;
 .region-sidebar-first ul.menu a:hover {
   background-color: rgba(255, 0, 0, 0.5);
 }
-
+.region-sidebar-first ul.menu a.active,
+.region-sidebar-first ul.menu a:active {
+  color:rgb(255, 0, 0);
+}
 .region-sidebar-first ul.menu {
   margin: 0px;
   list-style:none;
