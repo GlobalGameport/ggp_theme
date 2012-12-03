@@ -177,6 +177,12 @@ function ggp_theme_breadcrumb($vars) {
   }
   return '';
 }
+function theme_menu_tree($variables) {
+  $element = $variables['element'];
+
+  $element['#attributes']['class'][] = "menu"
+  return '<ul ' . drupal_attributes($element['#attributes']).'>' . $variables['tree'] . '</ul>';
+}
 /**
  * Adds collapse to Menu.
  */
@@ -213,7 +219,7 @@ function ggp_theme_menu_link(array $variables) {
 
   if ($element['#below']) {
     $collapse = (!$collapsed) ? '<span class="collapse"></span>': '<span class="expand"></span>';
-    $element["#below"]['attributes']['class'][] = "sub-menu";
+    $element["#below"]['#attributes']['class'][] = "sub-menu";
     debug($element["#below"]);
     $sub_menu = drupal_render($element['#below']);
   }
