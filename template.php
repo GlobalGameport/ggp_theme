@@ -180,7 +180,7 @@ function ggp_theme_breadcrumb($vars) {
 function theme_menu_tree($variables) {
   $element = $variables['element'];
 
-  $element['#attributes']['class'][] = "menu"
+  $element['#attributes']['class'][] = "menu";
   return '<ul ' . drupal_attributes($element['#attributes']).'>' . $variables['tree'] . '</ul>';
 }
 /**
