@@ -213,6 +213,7 @@ function ggp_theme_menu_link(array $variables) {
 
   if ($element['#below']) {
     $collapse = (!$collapsed) ? '<span class="collapse"></span>': '<span class="expand"></span>';
+    $element["#below"]['#attributes']['class'][] = "sub-menu";
     $sub_menu = drupal_render($element['#below']);
   }
 

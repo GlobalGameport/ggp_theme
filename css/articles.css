@@ -7,8 +7,9 @@
 }
 
 .article > header {
-background:rgba(224,0,0,0.55);
+background:rgba(225,0,0,0.55);
 margin:4px -6px;
+padding:5px;
 }
 
 /* Title */

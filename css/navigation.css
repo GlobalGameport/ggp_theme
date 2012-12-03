@@ -94,6 +94,23 @@ ul.menu li.last  {}
 .region-sidebar-first .block-inner {
 margin:0;
 }
+.region-sidebar-first ul.menu a {
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 11pt;
+  letter-spacing: 0.01em;
+  line-height: 14pt;
+  color: #dddddd;
+  display: block;
+  width: 100%;
+  padding: 5px 20px 5px 10px;
+  white-space: nowrap;
+  font-size: 14px;
+  cursor: pointer;
+}
+.region-sidebar-first ul.menu a:hover {
+  background-color: rgba(255, 0, 0, 0.5);
+}
 
 .region-sidebar-first ul.menu {
   margin: 0px;
@@ -101,52 +118,25 @@ margin:0;
 }
 .region-sidebar-first ul.menu li {
 list-style:none;
+display:list-item;
 padding:0;
-
+position: relative;
+line-height: 20px;
 }
-.region-sidebar-first ul.menu li a:link,
-.region-sidebar-first ul.menu li a:visited {
-padding: 2px 5px 0px 7px;
-height: 21px;
-font-size: 13px;
-font-weight: bold;
-display: block;
-background: url(../images/menu1.png) repeat-x 0 0;
-color:#E68200;
+.region-sidebar-first > ul.menu > li > a {
+  font-size: 1.1em;
 }
-.region-sidebar-first ul.menu li ul.menu li a:link,
-.region-sidebar-first ul.menu li ul.menu li a:visited {
-background: url(../images/menu2.png) repeat-x 0 -23px ;
-padding: 2px 5px 0px 10px;
-color: #E68200;
-display: block;
+.region-sidebar-first ul.sub-menu {
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
-.region-sidebar-first ul.menu li ul.menu li ul.menu li a:link,
-.region-sidebar-first ul.menu li ul.menu li ul.menu li a:visited {
-background: url(../images/menu3.png) repeat-x 0 0;
-padding: 2px 5px 0px 10px;
-color: #E68200;
-display: block;
+.region-sidebar-first ul.sub-menu a {
+  padding: 5px 20px 5px 25px;
 }
 
-.region-sidebar-first ul.menu li a:hover,
-.region-sidebar-first ul.menu li a:focus,
-.region-sidebar-first ul.menu li a.active  {
-background-position:0 -23px;
-color: #ddd;
-}
-.region-sidebar-first ul.menu li ul.menu li a:hover,
-.region-sidebar-first ul.menu li ul.menu li a:focus,
-.region-sidebar-first ul.menu li ul.menu li a.active  {
-background-position:0 0;
-color: #ddd;
-}
-.region-sidebar-first ul.menu li ul.menu li ul.menu li a:hover,
-.region-sidebar-first ul.menu li ul.menu li ul.menu li a:focus,
-.region-sidebar-first ul.menu li ul.menu li ul.menu li a.active  {
-text-decoration:underline;
-color: #ddd;
-}
+
+
+
 .region-sidebar-first ul.menu li span {
 display: block;
 float: right;
