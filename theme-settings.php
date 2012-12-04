@@ -138,21 +138,21 @@ function ggp_theme_form_system_theme_settings_alter(&$form, &$form_state)  {
 function ggp_theme_settings_submit($form, &$form_state) {
   $settings = array();
   $values = $form_state['values'];
-  debug($form_state);
+
   
   // Check for a new uploaded file, and use that if available.
   if ($file = file_save_upload('HD_header_image')) {
     $file->status = FILE_STATUS_PERMANENT;
     if ($image = _ggp_theme_save_image($file)) {
       // Put new image into settings
-      $settings[] = $image;
+      $values['HD_header_image_path'] = $image['image_path'];
     }
   }
   if ($file = file_save_upload('LD_header_image')) {
     $file->status = FILE_STATUS_PERMANENT;
     if ($image = _ggp_theme_save_image($file)) {
       // Put new image into settings
-      $settings[] = $image;
+      $values['LD_header_image_path'] = $image['image_path'];
     }
   }
   debug($settings);
