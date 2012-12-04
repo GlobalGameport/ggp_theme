@@ -186,7 +186,7 @@ function ggp_theme_settings_submit($form, &$form_state) {
 
   $comment        = "/* LD Background */\n";
   $path = $form_state['values']['LD_bg_image_path'];
-  $media_query = $form_state['values']s['LD_media_query'];
+  $media_query = $form_state['values']['LD_media_query'];
   $bg_color = $form_state['values']['LD_bg_color'];
 
   $style = "\n" . 'body {background:no-repeat url(' . file_create_url($path) . ') ' . $bg_color . ';}';
