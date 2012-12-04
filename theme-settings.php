@@ -163,31 +163,31 @@ function ggp_theme_settings_submit($form, &$form_state) {
     $file->status = FILE_STATUS_PERMANENT;
     if ($image = _ggp_theme_save_image($file)) {
       // Put new image into settings
-      $values['HD_bg_image_path'] = $image['image_path'];
+      $form_state['values']['HD_bg_image_path'] = $image['image_path'];
     }
   }
   if ($file = file_save_upload('LD_bg_image')) {
     $file->status = FILE_STATUS_PERMANENT;
     if ($image = _ggp_theme_save_image($file)) {
       // Put new image into settings
-      $values['LD_bg_image_path'] = $image['image_path'];
+      $form_state['values']['LD_bg_image_path'] = $image['image_path'];
     }
   }
   debug($values);
 
   $comment        = "/* HD Background */\n";
-  $path = $values['HD_bg_image_path'];
-  $media_query = $values['HD_media_query'];
-  $bg_color = $values['HD_bg_color'];
+  $path = $form_state['values']['HD_bg_image_path'];
+  $media_query = $form_state['values']['HD_media_query'];
+  $bg_color = $form_state['values']['HD_bg_color'];
 
   $style = "\n" . 'body {background: no-repeat url(' . file_create_url($path) . ') '. $bg_color . ';}';
   $css = $comment . '@media ' . $media_query . ' {' . "\n" . $style . "\n" . '}';
   $layouts[] = check_plain($css);
 
   $comment        = "/* LD Background */\n";
-  $path = $values['LD_bg_image_path'];
-  $media_query = $values['LD_media_query'];
-  $bg_color = $values['LD_bg_color'];
+  $path = $form_state['values']['LD_bg_image_path'];
+  $media_query = $form_state['values']s['LD_media_query'];
+  $bg_color = $form_state['values']['LD_bg_color'];
 
   $style = "\n" . 'body {background:no-repeat url(' . file_create_url($path) . ') ' . $bg_color . ';}';
   $css = $comment . '@media ' . $media_query . ' {' . "\n" . $style . "\n" . '}';
