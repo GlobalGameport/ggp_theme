@@ -74,7 +74,7 @@ function ggp_theme_form_system_theme_settings_alter(&$form, &$form_state)  {
   $form['gt']['hd']['media-queries-wrapper']['HD_media_query'] = array(
     '#type' => 'textfield',
     '#title' => t('Media query for this Background'),
-    '#default_value' => theme_get_setting('HD_media_query', "only screen and (min-width:1200px)"),
+    '#default_value' => (theme_get_setting('HD_media_query') != NULL) ? theme_get_setting('HD_media_query') :  "only screen and (min-width:1200px)",
     '#description' => t('Do not include @media, its included automatically.'),
     '#field_prefix' => '@media',
     '#size' => 100,
@@ -122,7 +122,7 @@ function ggp_theme_form_system_theme_settings_alter(&$form, &$form_state)  {
   $form['gt']['ld']['media-queries-wrapper']['LD_media_query'] = array(
     '#type' => 'textfield',
     '#title' => t('Media query for this Background'),
-    '#default_value' => theme_get_setting('LD_media_query', "only screen and (max-width:1200px)") ,
+    '#default_value' => (theme_get_setting('LD_media_query') != NULL) ? theme_get_setting('LD_media_query') : "only screen and (max-width:1200px)") ,
     '#description' => t('Do not include @media, its included automatically.'),
     '#field_prefix' => '@media',
     '#size' => 100,
