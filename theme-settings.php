@@ -32,7 +32,7 @@ function ggp_theme_form_system_theme_settings_alter(&$form, &$form_state)  {
   );
 
 
-  // bigscreen
+  // High Res
   $form['gt']['hd'] = array(
     '#type' => 'fieldset',
     '#title' => t('HD Res'),
@@ -41,18 +41,23 @@ function ggp_theme_form_system_theme_settings_alter(&$form, &$form_state)  {
       'class' => array('at-layout-form'),
     ),
   );
-  $form['gt']['hd']['bigscreen_header_image'] = array(
+  $form['gt']['hd']['image'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Background Image'),
+    '#description' => t('<h3>-------</h3>.'),
+    );
+  $form['gt']['hd']['image']['bigscreen_header_image'] = array(
     '#type' => 'file',
     '#title' => t('Header image'),
     '#maxlength' => 40,
   );
-  $form['gt']['hd']['HD_header_image_path'] = array(
+  $form['gt']['hd']['image']['HD_header_image_path'] = array(
     '#type' => 'value',
-    '#value' => !empty($settings['HD_header_image_path']) ?
-      $settings['HD_header_image_path'] : '',
+    '#value' => !empty($settings['gt']['hd']['image']['HD_header_image_path']) ?
+      $settings['gt']['hd']['image']['HD_header_image_path'] : '',
   );
-  if (!empty($settings['gt']['hd']['HDn_header_image_path'])) {
-    $form['gt']['hd']['HD_header_image_preview'] = array(
+  if (!empty($settings['gt']['hd']['image']['HDn_header_image_path'])) {
+    $form['gt']['hd']['image']['HD_header_image_preview'] = array(
       '#type' => 'markup',
       '#value' => !empty($settings['gt']['hd']['HD_header_image_path']) ?
           theme('image', $settings['gt']['hd']['HD_header_image_path']) : '',
@@ -75,7 +80,7 @@ function ggp_theme_form_system_theme_settings_alter(&$form, &$form_state)  {
     '#size' => 100,
     '#required' => TRUE
   );
-  // bigscreen
+  // Low Res
   $form['gt']['ld'] = array(
     '#type' => 'fieldset',
     '#title' => t('Low Res'),
@@ -84,18 +89,23 @@ function ggp_theme_form_system_theme_settings_alter(&$form, &$form_state)  {
       'class' => array('at-layout-form'),
     ),
   );
-  $form['gt']['ld']['LD_header_image'] = array(
+  $form['gt']['ld']['image'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Background Image'),
+    '#description' => t('<h3>-------</h3>.'),
+    );
+  $form['gt']['ld']['image']['LD_header_image'] = array(
     '#type' => 'file',
     '#title' => t('Header image'),
     '#maxlength' => 40,
   );
-  $form['gt']['ld']['LD_header_image_path'] = array(
+  $form['gt']['ld']['image']['LD_header_image_path'] = array(
     '#type' => 'value',
-    '#value' => !empty($settings['LD_header_image_path']) ?
-      $settings['LD_header_image_path'] : '',
+    '#value' => !empty($settings['gt']['ld']['image']['LD_header_image_path']) ?
+      $settings['gt']['ld']['image']['LD_header_image_path'] : '',
   );
-  if (!empty($settings['gt']['ld']['LD_header_image_path'])) {
-    $form['gt']['ld']['LD_header_image_preview'] = array(
+  if (!empty($settings['gt']['ld']['image']['LD_header_image_path'])) {
+    $form['gt']['ld']['image']['LD_header_image_preview'] = array(
       '#type' => 'markup',
       '#value' => !empty($settings['gt']['ld']['LD_header_image_path']) ?
           theme('image', $settings['gt']['ld']['LD_header_image_path']) : '',
