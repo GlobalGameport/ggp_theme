@@ -67,7 +67,7 @@ function ggp_theme_form_system_theme_settings_alter(&$form, &$form_state)  {
   $form['gt']['hd']['image']['HD_bg_color'] = array(
     '#type' => 'textfield',
     '#title' => t('Background color'),
-    '#default_value' => (theme_get_setting('HD_bg_color') != NULL) ? theme_get_setting('HD_bg_color') :  "#00000",
+    '#default_value' => (theme_get_setting('HD_bg_color') != NULL) ? theme_get_setting('HD_bg_color') :  "#000000",
     '#description' => t('CSS Syntax e.g. <i>#000000</i> or <i>rgba(100, 123, 55, 0.1)</i>'),
     '#size' => 100,
     '#required' => TRUE
@@ -124,7 +124,7 @@ function ggp_theme_form_system_theme_settings_alter(&$form, &$form_state)  {
     $form['gt']['ld']['image']['LD_bg_color'] = array(
     '#type' => 'textfield',
     '#title' => t('Background color'),
-    '#default_value' => (theme_get_setting('LD_bg_color') != NULL) ? theme_get_setting('LD_bg_color') :  "#00000",
+    '#default_value' => (theme_get_setting('LD_bg_color') != NULL) ? theme_get_setting('LD_bg_color') :  "#000000",
     '#description' => t('CSS Syntax e.g. <i>#000000</i> or <i>rgba(100, 123, 55, 0.1)</i>'),
     '#size' => 100,
     '#required' => TRUE
