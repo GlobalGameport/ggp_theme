@@ -138,7 +138,7 @@ function ggp_theme_form_system_theme_settings_alter(&$form, &$form_state)  {
 function ggp_theme_settings_submit($form, &$form_state) {
   $settings = array();
   $values = $form_state['values'];
-  debug($form_state['input']);
+  debug($form_state);
   // Update image field
   foreach ($form_state['input']['images'] as $image) {
     if (is_array($image)) {
@@ -160,21 +160,30 @@ function ggp_theme_settings_submit($form, &$form_state) {
     }
   }
 
-  $comment        = "/* Standard layout $method */\n";
-  $path = $values['bigscreen_header_image_path'];
-  $media_query = $values['bigscreen_media_query'];
+  $comment        = "/* HD Background */\n";
+  $path = $values['HD_header_image_path'];
+  $media_query = $values['HD_media_query'];
 
   $style = "\n" . 'body {background:repeat-no url(' . $path . ');}';
   $css = $comment . '@media ' . $media_query . ' {' . "\n" . $style . "\n" . '}';
   $layouts[] = check_plain($css);
 
-  $file  = $theme . '.responsive.background.css';
+  $comment        = "/* LD Background */\n";
+  $path = $values['LD_header_image_path'];
+  $media_query = $values['LD_media_query'];
+
+  $style = "\n" . 'body {background:repeat-no url(' . $path . ');}';
+  $css = $comment . '@media ' . $media_query . ' {' . "\n" . $style . "\n" . '}';
+  $layouts[] = check_plain($css);
+
+
+  $theme = $form_state['build_info']['args'][0];
   $path  = "public://at_css";
-
-  $data  = $layout_data;
-
   file_prepare_directory($path, FILE_CREATE_DIRECTORY);
 
+
+  $file  = $theme . '.responsive.background.css';
+  $data  = $layout_data;
   $filepath = $path . '/' . $file;
   file_save_data($data, $filepath, FILE_EXISTS_REPLACE);
 
