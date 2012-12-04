@@ -45,6 +45,9 @@ function ggp_theme_form_system_theme_settings_alter(&$form, &$form_state)  {
     '#type' => 'fieldset',
     '#title' => t('Background Image'),
     '#description' => t('Background Image.'),
+    '#attributes' => array(
+      'class' => array('at-media-queries'),
+    ),
     );
   $form['gt']['hd']['image']['HD_bg_image'] = array(
     '#type' => 'file',
@@ -99,6 +102,9 @@ function ggp_theme_form_system_theme_settings_alter(&$form, &$form_state)  {
     '#type' => 'fieldset',
     '#title' => t('Background Image'),
     '#description' => t('Background Image.'),
+    '#attributes' => array(
+      'class' => array('at-media-queries'),
+    ),
     );
   $form['gt']['ld']['image']['LD_bg_image'] = array(
     '#type' => 'file',
@@ -174,7 +180,7 @@ function ggp_theme_settings_submit($form, &$form_state) {
   $media_query = $values['HD_media_query'];
   $bg_color = $values['HD_bg_color'];
 
-  $style = "\n" . 'body {background: no-repeat url(' . file_create_url($path) . $bg_color . ');}';
+  $style = "\n" . 'body {background: no-repeat url(' . file_create_url($path) . ')'. $bg_color . ';}';
   $css = $comment . '@media ' . $media_query . ' {' . "\n" . $style . "\n" . '}';
   $layouts[] = check_plain($css);
 
@@ -183,7 +189,7 @@ function ggp_theme_settings_submit($form, &$form_state) {
   $media_query = $values['LD_media_query'];
   $bg_color = $values['LD_bg_color'];
 
-  $style = "\n" . 'body {background:no-repeat url(' . file_create_url($path) . $bg_color . ');}';
+  $style = "\n" . 'body {background:no-repeat url(' . file_create_url($path) . ')' . $bg_color . ';}';
   $css = $comment . '@media ' . $media_query . ' {' . "\n" . $style . "\n" . '}';
   $layouts[] = check_plain($css);
   $layout_data = implode("\n", $layouts);
