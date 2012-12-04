@@ -161,7 +161,7 @@ function ggp_theme_settings_submit($form, &$form_state) {
   $path = $values['HD_header_image_path'];
   $media_query = $values['HD_media_query'];
 
-  $style = "\n" . 'body {background:repeat-no url(' . $path . ');}';
+  $style = "\n" . 'body {background: no-repeat url(' . file_create_url($path) . ');}';
   $css = $comment . '@media ' . $media_query . ' {' . "\n" . $style . "\n" . '}';
   $layouts[] = check_plain($css);
 
@@ -169,7 +169,7 @@ function ggp_theme_settings_submit($form, &$form_state) {
   $path = $values['LD_header_image_path'];
   $media_query = $values['LD_media_query'];
 
-  $style = "\n" . 'body {background:repeat-no url(' . $path . ');}';
+  $style = "\n" . 'body {background:no-repeat url(' . file_create_url($path) . ');}';
   $css = $comment . '@media ' . $media_query . ' {' . "\n" . $style . "\n" . '}';
   $layouts[] = check_plain($css);
   $layout_data = implode("\n", $layouts);
