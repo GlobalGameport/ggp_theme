@@ -44,9 +44,9 @@ function ggp_theme_form_system_theme_settings_alter(&$form, &$form_state)  {
   $form['gt']['hd']['image'] = array(
     '#type' => 'fieldset',
     '#title' => t('Background Image'),
-    '#description' => t('<h3>-------</h3>.'),
+    '#description' => t('Background Image.'),
     );
-  $form['gt']['hd']['image']['bigscreen_header_image'] = array(
+  $form['gt']['hd']['image']['HD_header_image'] = array(
     '#type' => 'file',
     '#title' => t('Header image'),
     '#maxlength' => 40,
@@ -56,7 +56,7 @@ function ggp_theme_form_system_theme_settings_alter(&$form, &$form_state)  {
     '#value' => !empty($settings['gt']['hd']['image']['HD_header_image_path']) ?
       $settings['gt']['hd']['image']['HD_header_image_path'] : '',
   );
-  if (!empty($settings['gt']['hd']['image']['HDn_header_image_path'])) {
+  if (!empty($settings['gt']['hd']['image']['HD_header_image_path'])) {
     $form['gt']['hd']['image']['HD_header_image_preview'] = array(
       '#type' => 'markup',
       '#value' => !empty($settings['gt']['hd']['HD_header_image_path']) ?
@@ -92,7 +92,7 @@ function ggp_theme_form_system_theme_settings_alter(&$form, &$form_state)  {
   $form['gt']['ld']['image'] = array(
     '#type' => 'fieldset',
     '#title' => t('Background Image'),
-    '#description' => t('<h3>-------</h3>.'),
+    '#description' => t('Background Image.'),
     );
   $form['gt']['ld']['image']['LD_header_image'] = array(
     '#type' => 'file',
