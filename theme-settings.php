@@ -35,27 +35,27 @@ function ggp_theme_form_system_theme_settings_alter(&$form, &$form_state)  {
   // bigscreen
   $form['gt']['bigscreen'] = array(
     '#type' => 'fieldset',
-    '#title' => t('Standard Layout'),
-    '#description' => t('<h3>Standard Layout</h3><p>The standard layout is for desktops, laptops and other large screen devices.'),
+    '#title' => t('HD Res'),
+    '#description' => t('<h3>Standard Layout</h3><p>The huge layout is for HD resolutions.'),
     '#attributes' => array(
       'class' => array('at-layout-form'),
     ),
   );
-  $form['gt']['bigscreen']['header_image'] = array(
+  $form['gt']['bigscreen']['bigscreen_header_image'] = array(
     '#type' => 'file',
     '#title' => t('Header image'),
     '#maxlength' => 40,
   );
-  $form['gt']['bigscreen']['header_image_path'] = array(
+  $form['gt']['bigscreen']['bigscreen_header_image_path'] = array(
     '#type' => 'value',
-    '#value' => !empty($settings['header_image_path']) ?
-      $settings['header_image_path'] : '',
+    '#value' => !empty($settings['bigscreen_header_image_path']) ?
+      $settings['bigscreen_header_image_path'] : '',
   );
-  if (!empty($settings['gt']['bigscreen']['header_image_path'])) {
-    $form['gt']['bigscreen']['header_image_preview'] = array(
+  if (!empty($settings['gt']['bigscreen']['bigscreen_header_image_path'])) {
+    $form['gt']['bigscreen']['bigscreen_header_image_preview'] = array(
       '#type' => 'markup',
-      '#value' => !empty($settings['gt']['bigscreen']['header_image_path']) ?
-          theme('image', $settings['gt']['bigscreen']['header_image_path']) : '',
+      '#value' => !empty($settings['gt']['bigscreen']['bigscreen_header_image_path']) ?
+          theme('image', $settings['gt']['bigscreen']['bigscreen_header_image_path']) : '',
     );
   }
   $form['gt']['bigscreen']['media-queries-wrapper'] = array(
@@ -78,8 +78,8 @@ function ggp_theme_form_system_theme_settings_alter(&$form, &$form_state)  {
   // bigscreen
   $form['gt']['midscreen'] = array(
     '#type' => 'fieldset',
-    '#title' => t('Standard Layout'),
-    '#description' => t('<h3>Standard Layout</h3><p>The standard layout is for desktops, laptops and other large screen devices.'),
+    '#title' => t('Low Res'),
+    '#description' => t('<h3>Standard Layout</h3><p>The Low Res for Low Res.'),
     '#attributes' => array(
       'class' => array('at-layout-form'),
     ),
@@ -97,8 +97,8 @@ function ggp_theme_form_system_theme_settings_alter(&$form, &$form_state)  {
   if (!empty($settings['gt']['midscreen']['header_image_path'])) {
     $form['gt']['midscreen']['header_image_preview'] = array(
       '#type' => 'markup',
-      '#value' => !empty($settings['gt']['bigscreen']['header_image_path']) ?
-          theme('image', $settings['gt']['bigscreen']['header_image_path']) : '',
+      '#value' => !empty($settings['gt']['midscreen']['header_image_path']) ?
+          theme('image', $settings['gt']['midscreen']['header_image_path']) : '',
     );
   }
   $form['gt']['midscreen']['media-queries-wrapper'] = array(
@@ -109,10 +109,10 @@ function ggp_theme_form_system_theme_settings_alter(&$form, &$form_state)  {
       'class' => array('at-media-queries'),
     ),
   );
-  $form['gt']['midscreen']['media-queries-wrapper']['bigscreen_media_query'] = array(
+  $form['gt']['midscreen']['media-queries-wrapper']['midscreen_media_query'] = array(
     '#type' => 'textfield',
     '#title' => t('Media query for this Background'),
-    '#default_value' => theme_get_setting('bigscreen_media_query'),
+    '#default_value' => theme_get_setting('midscreen_media_query'),
     '#description' => t('Do not include @media, its included automatically.'),
     '#field_prefix' => '@media',
     '#size' => 100,
@@ -127,24 +127,20 @@ function ggp_theme_form_system_theme_settings_alter(&$form, &$form_state)  {
  */
 function ggp_theme_settings_submit($form, &$form_state) {
   $settings = array();
+  $values = $form_state['values'];
 
   // Update image field
   foreach ($form_state['input']['images'] as $image) {
     if (is_array($image)) {
       $image = $image['image'];
       
-      if ($image['image_delete']) {
-        // Delete banner file
-        file_unmanaged_delete($image['image_path']);
-        // Delete banner thumbnail file
-        file_unmanaged_delete($image['image_thumb']);
-      } else {
+      
         // Update image
         $settings[] = $image;
       }
     }
   }
-  
+  debug($settings);
   // Check for a new uploaded file, and use that if available.
   if ($file = file_save_upload('image_upload')) {
     $file->status = FILE_STATUS_PERMANENT;
@@ -153,4 +149,20 @@ function ggp_theme_settings_submit($form, &$form_state) {
      // $settings[] = $image;
     //}
   }
+
+  $comment        = "/* Standard layout $method */\n";
+  $path = $values['bigscreen_header_image_path'];
+  $media_query = $values['bigscreen_media_query'];
+
+  $style = "\n" . 'body {background:repeat-no url(' . $path . ');}';
+  $css = $comment . '@media ' . $media_query . ' {' . "\n" . $style . "\n" . '}';
+  $layouts[] = check_plain($css);
+
+  $file  = $theme . '.responsive.background.css';
+  $path  = "public://at_css";
+  $data  = $layout_data;
+
+  file_prepare_directory($path, FILE_CREATE_DIRECTORY);
+  $filepath = $path . '/' . $file;
+  file_save_data($data, $filepath, FILE_EXISTS_REPLACE);
 }
