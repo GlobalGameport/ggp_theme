@@ -139,18 +139,7 @@ function ggp_theme_settings_submit($form, &$form_state) {
   $settings = array();
   $values = $form_state['values'];
   debug($form_state);
-  // Update image field
-  foreach ($form_state['input']['images'] as $image) {
-    if (is_array($image)) {
-      $image = $image['image'];
-      
-      
-        // Update image
-        $settings[] = $image;
-
-    }
-  }
-  debug($settings);
+  
   // Check for a new uploaded file, and use that if available.
   if ($file = file_save_upload('HD_header_image')) {
     $file->status = FILE_STATUS_PERMANENT;
@@ -166,6 +155,7 @@ function ggp_theme_settings_submit($form, &$form_state) {
       $settings[] = $image;
     }
   }
+  debug($settings);
 
   $comment        = "/* HD Background */\n";
   $path = $values['HD_header_image_path'];
