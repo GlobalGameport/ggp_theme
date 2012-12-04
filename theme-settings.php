@@ -180,7 +180,7 @@ function ggp_theme_settings_submit($form, &$form_state) {
   $media_query = $values['HD_media_query'];
   $bg_color = $values['HD_bg_color'];
 
-  $style = "\n" . 'body {background: no-repeat url(' . file_create_url($path) . ') '. $bg_color . ';}';
+  $style = "\n" . 'body {background: no-repeat url("' . file_create_url($path) . '"") '. $bg_color . ';}';
   $css = $comment . '@media ' . $media_query . ' {' . "\n" . $style . "\n" . '}';
   $layouts[] = check_plain($css);
 
@@ -189,7 +189,7 @@ function ggp_theme_settings_submit($form, &$form_state) {
   $media_query = $values['LD_media_query'];
   $bg_color = $values['LD_bg_color'];
 
-  $style = "\n" . 'body {background:no-repeat url(' . file_create_url($path) . ') ' . $bg_color . ';}';
+  $style = "\n" . 'body {background:no-repeat url("' . file_create_url($path) . '"") ' . $bg_color . ';}';
   $css = $comment . '@media ' . $media_query . ' {' . "\n" . $style . "\n" . '}';
   $layouts[] = check_plain($css);
   $layout_data = implode("\n", $layouts);
