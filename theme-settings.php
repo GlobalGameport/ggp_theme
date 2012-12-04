@@ -137,7 +137,7 @@ function ggp_theme_settings_submit($form, &$form_state) {
       
         // Update image
         $settings[] = $image;
-      }
+
     }
   }
   debug($settings);
