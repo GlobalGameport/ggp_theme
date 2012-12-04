@@ -46,21 +46,29 @@ function ggp_theme_form_system_theme_settings_alter(&$form, &$form_state)  {
     '#title' => t('Background Image'),
     '#description' => t('Background Image.'),
     );
-  $form['gt']['hd']['image']['HD_header_image'] = array(
+  $form['gt']['hd']['image']['HD_bg_image'] = array(
     '#type' => 'file',
-    '#title' => t('Header image'),
+    '#title' => t('bg image'),
     '#maxlength' => 40,
   );
-  $form['gt']['hd']['image']['HD_header_image_path'] = array(
+  $form['gt']['hd']['image']['HD_bg_image_path'] = array(
     '#type' => 'value',
-    '#value' => theme_get_setting('HD_header_image_path') ,
+    '#value' => theme_get_setting('HD_bg_image_path') ,
   );
-  if (theme_get_setting('HD_header_image_path') != NULL) {
-    $form['gt']['hd']['image']['HD_header_image_preview'] = array(
+  if (theme_get_setting('HD_bg_image_path') != NULL) {
+    $form['gt']['hd']['image']['HD_bg_image_preview'] = array(
       '#type' => 'markup',
-      '#value' => theme('image', array('path' => theme_get_setting('HD_header_image_path'))),
+      '#value' => theme('image', array('path' => theme_get_setting('HD_bg_image_path'))),
     );
   }
+  $form['gt']['hd']['image']['HD_bg_color'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Background color'),
+    '#default_value' => (theme_get_setting('HD_bg_color') != NULL) ? theme_get_setting('HD_bg_color') :  "#00000",
+    '#description' => t('CSS Syntax e.g. <i>#000000</i> or <i>rgba(100, 123, 55, 0.1)</i>'),
+    '#size' => 100,
+    '#required' => TRUE
+  );
   $form['gt']['hd']['media-queries-wrapper'] = array(
     '#type' => 'fieldset',
     '#title' => t('Standard Screen Media Queries'),
@@ -92,21 +100,29 @@ function ggp_theme_form_system_theme_settings_alter(&$form, &$form_state)  {
     '#title' => t('Background Image'),
     '#description' => t('Background Image.'),
     );
-  $form['gt']['ld']['image']['LD_header_image'] = array(
+  $form['gt']['ld']['image']['LD_bg_image'] = array(
     '#type' => 'file',
-    '#title' => t('Header image'),
+    '#title' => t('bg image'),
     '#maxlength' => 40,
   );
-  $form['gt']['ld']['image']['LD_header_image_path'] = array(
+  $form['gt']['ld']['image']['LD_bg_image_path'] = array(
     '#type' => 'value',
-    '#value' => theme_get_setting('LD_header_image_path'),
+    '#value' => theme_get_setting('LD_bg_image_path'),
   );
-  if (theme_get_setting('LD_header_image_path') != NULL) {
-    $form['gt']['ld']['image']['LD_header_image_preview'] = array(
+  if (theme_get_setting('LD_bg_image_path') != NULL) {
+    $form['gt']['ld']['image']['LD_bg_image_preview'] = array(
       '#type' => 'markup',
-      '#value' => theme('image', array('path' => theme_get_setting('LD_header_image_path'))),
+      '#value' => theme('image', array('path' => theme_get_setting('LD_bg_image_path'))),
     );
   }
+    $form['gt']['ld']['image']['LD_bg_color'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Background color'),
+    '#default_value' => (theme_get_setting('LD_bg_color') != NULL) ? theme_get_setting('LD_bg_color') :  "#00000",
+    '#description' => t('CSS Syntax e.g. <i>#000000</i> or <i>rgba(100, 123, 55, 0.1)</i>'),
+    '#size' => 100,
+    '#required' => TRUE
+  );
   $form['gt']['ld']['media-queries-wrapper'] = array(
     '#type' => 'fieldset',
     '#title' => t('Standard Screen Media Queries'),
@@ -137,35 +153,37 @@ function ggp_theme_settings_submit($form, &$form_state) {
 
   
   // Check for a new uploaded file, and use that if available.
-  if ($file = file_save_upload('HD_header_image')) {
+  if ($file = file_save_upload('HD_bg_image')) {
     $file->status = FILE_STATUS_PERMANENT;
     if ($image = _ggp_theme_save_image($file)) {
       // Put new image into settings
-      $values['HD_header_image_path'] = $image['image_path'];
+      $values['HD_bg_image_path'] = $image['image_path'];
     }
   }
-  if ($file = file_save_upload('LD_header_image')) {
+  if ($file = file_save_upload('LD_bg_image')) {
     $file->status = FILE_STATUS_PERMANENT;
     if ($image = _ggp_theme_save_image($file)) {
       // Put new image into settings
-      $values['LD_header_image_path'] = $image['image_path'];
+      $values['LD_bg_image_path'] = $image['image_path'];
     }
   }
   debug($settings);
 
   $comment        = "/* HD Background */\n";
-  $path = $values['HD_header_image_path'];
+  $path = $values['HD_bg_image_path'];
   $media_query = $values['HD_media_query'];
+  $bg_color = $values['HD_bg_color'];
 
-  $style = "\n" . 'body {background: no-repeat url(' . file_create_url($path) . ');}';
+  $style = "\n" . 'body {background: no-repeat url(' . file_create_url($path) . $bg_color . ');}';
   $css = $comment . '@media ' . $media_query . ' {' . "\n" . $style . "\n" . '}';
   $layouts[] = check_plain($css);
 
   $comment        = "/* LD Background */\n";
-  $path = $values['LD_header_image_path'];
+  $path = $values['LD_bg_image_path'];
   $media_query = $values['LD_media_query'];
+  $bg_color = $values['LD_bg_color'];
 
-  $style = "\n" . 'body {background:no-repeat url(' . file_create_url($path) . ');}';
+  $style = "\n" . 'body {background:no-repeat url(' . file_create_url($path) . $bg_color . ');}';
   $css = $comment . '@media ' . $media_query . ' {' . "\n" . $style . "\n" . '}';
   $layouts[] = check_plain($css);
   $layout_data = implode("\n", $layouts);
