@@ -74,7 +74,7 @@ function ggp_theme_form_system_theme_settings_alter(&$form, &$form_state)  {
   $form['gt']['hd']['media-queries-wrapper']['HD_media_query'] = array(
     '#type' => 'textfield',
     '#title' => t('Media query for this Background'),
-    '#default_value' => theme_get_setting('HD_media_query'),
+    '#default_value' => theme_get_setting('HD_media_query', "only screen and (min-width:1200px)"),
     '#description' => t('Do not include @media, its included automatically.'),
     '#field_prefix' => '@media',
     '#size' => 100,
@@ -122,7 +122,7 @@ function ggp_theme_form_system_theme_settings_alter(&$form, &$form_state)  {
   $form['gt']['ld']['media-queries-wrapper']['LD_media_query'] = array(
     '#type' => 'textfield',
     '#title' => t('Media query for this Background'),
-    '#default_value' => theme_get_setting('LD_media_query'),
+    '#default_value' => theme_get_setting('LD_media_query', "only screen and (max-width:1200px)") ,
     '#description' => t('Do not include @media, its included automatically.'),
     '#field_prefix' => '@media',
     '#size' => 100,
@@ -138,7 +138,7 @@ function ggp_theme_form_system_theme_settings_alter(&$form, &$form_state)  {
 function ggp_theme_settings_submit($form, &$form_state) {
   $settings = array();
   $values = $form_state['values'];
-
+  debug($form_state['input']);
   // Update image field
   foreach ($form_state['input']['images'] as $image) {
     if (is_array($image)) {
@@ -154,10 +154,10 @@ function ggp_theme_settings_submit($form, &$form_state) {
   // Check for a new uploaded file, and use that if available.
   if ($file = file_save_upload('image_upload')) {
     $file->status = FILE_STATUS_PERMANENT;
-    //if ($image = _marinelli_save_image($file)) {
+    if ($image = _ggp_theme_save_image($file)) {
       // Put new image into settings
-     // $settings[] = $image;
-    //}
+      $settings[] = $image;
+    }
   }
 
   $comment        = "/* Standard layout $method */\n";
@@ -170,9 +170,42 @@ function ggp_theme_settings_submit($form, &$form_state) {
 
   $file  = $theme . '.responsive.background.css';
   $path  = "public://at_css";
+
   $data  = $layout_data;
 
   file_prepare_directory($path, FILE_CREATE_DIRECTORY);
+
   $filepath = $path . '/' . $file;
   file_save_data($data, $filepath, FILE_EXISTS_REPLACE);
+
+  variable_set($theme . '_responsive_background_file_path', $path);
+  variable_set($theme . '_responsive_background_file_css', $file);
+}
+
+
+function _ggp_theme_save_image($file, $bg_folder = 'public://backgrounds/', $bg_thumb_folder = 'public://backgrounds/thumb/') {
+  file_prepare_directory($bg_folder, FILE_CREATE_DIRECTORY);
+  file_prepare_directory($bg_thumb_folder, FILE_CREATE_DIRECTORY);
+
+   $parts = pathinfo($file->filename);
+  $destination = $bg_folder . $parts['basename'];
+  $setting = array();
+
+  $file->status = FILE_STATUS_PERMANENT;
+  
+  // Copy temporary image into banner folder
+  if ($img = file_copy($file, $destination, FILE_EXISTS_REPLACE)) {
+    // Generate image thumb
+    $image = image_load($destination);
+    $small_img = image_scale($image, 300, 100);
+    $image->source = $bg_thumb_folder . $parts['basename'];
+    image_save($image);
+
+    // Set image info
+    $setting['image_path'] = $destination;
+
+    return $setting;
+  }
+  
+  return FALSE;
 }

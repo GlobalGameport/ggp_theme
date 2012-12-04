@@ -22,6 +22,27 @@ function ggp_theme_preprocess_html(&$vars) {
   );
   load_subtheme_media_queries($media_queries_css, 'ggp_theme');
 
+ // Load Layout CSS
+  global $theme;
+  $path = "public://at_css";
+
+  $responsive_css = $theme . '_responsive_background_file_css';
+  $file = variable_get($responsive_css);
+
+  // Load the Responsive layout
+  if (!empty($file)) {
+    $filepath = $path . '/' . $file;
+    if (file_exists($filepath)) {
+      drupal_add_css($filepath, array(
+        'preprocess' => variable_get('preprocess_css', '') == 1 ? TRUE : FALSE,
+        'group' => CSS_THEME,
+        'media' => 'all',
+        'every_page' => TRUE,
+        'weight' => 1000,
+        )
+      );
+    }
+  }
  /**
   * Load IE specific stylesheets
   * AT automates adding IE stylesheets, simply add to the array using
@@ -43,8 +64,9 @@ function ggp_theme_preprocess_html(&$vars) {
   // */
 }
 
-/* -- Delete this line if you want to use this function
+ /*-- Delete this line if you want to use this function
 function ggp_theme_process_html(&$vars) {
+
 }
 // */
 
