@@ -173,7 +173,7 @@ function ggp_theme_settings_submit($form, &$form_state) {
       $values['LD_bg_image_path'] = $image['image_path'];
     }
   }
-  debug($settings);
+  debug($values);
 
   $comment        = "/* HD Background */\n";
   $path = $values['HD_bg_image_path'];
