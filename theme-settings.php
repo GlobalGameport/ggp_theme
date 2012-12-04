@@ -152,7 +152,14 @@ function ggp_theme_settings_submit($form, &$form_state) {
   }
   debug($settings);
   // Check for a new uploaded file, and use that if available.
-  if ($file = file_save_upload('image_upload')) {
+  if ($file = file_save_upload('HD_header_image')) {
+    $file->status = FILE_STATUS_PERMANENT;
+    if ($image = _ggp_theme_save_image($file)) {
+      // Put new image into settings
+      $settings[] = $image;
+    }
+  }
+  if ($file = file_save_upload('LD_header_image')) {
     $file->status = FILE_STATUS_PERMANENT;
     if ($image = _ggp_theme_save_image($file)) {
       // Put new image into settings
