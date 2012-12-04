@@ -53,14 +53,12 @@ function ggp_theme_form_system_theme_settings_alter(&$form, &$form_state)  {
   );
   $form['gt']['hd']['image']['HD_header_image_path'] = array(
     '#type' => 'value',
-    '#value' => !empty($settings['gt']['hd']['image']['HD_header_image_path']) ?
-      $settings['gt']['hd']['image']['HD_header_image_path'] : '',
+    '#value' => theme_get_setting(['gt']['hd']['image']['HD_header_image_path']) ,
   );
-  if (!empty($settings['gt']['hd']['image']['HD_header_image_path'])) {
+  if (!empty(theme_get_setting(['gt']['hd']['image']['HD_header_image_path']))) {
     $form['gt']['hd']['image']['HD_header_image_preview'] = array(
       '#type' => 'markup',
-      '#value' => !empty($settings['gt']['hd']['HD_header_image_path']) ?
-          theme('image', $settings['gt']['hd']['HD_header_image_path']) : '',
+      '#value' => theme('image', $settings['gt']['hd']['HD_header_image_path']),
     );
   }
   $form['gt']['hd']['media-queries-wrapper'] = array(
@@ -101,14 +99,12 @@ function ggp_theme_form_system_theme_settings_alter(&$form, &$form_state)  {
   );
   $form['gt']['ld']['image']['LD_header_image_path'] = array(
     '#type' => 'value',
-    '#value' => !empty($settings['gt']['ld']['image']['LD_header_image_path']) ?
-      $settings['gt']['ld']['image']['LD_header_image_path'] : '',
+    '#value' => theme_get_setting(['gt']['ld']['image']['LD_header_image_path']),
   );
-  if (!empty($settings['gt']['ld']['image']['LD_header_image_path'])) {
+  if (!empty(theme_get_setting(['gt']['ld']['image']['LD_header_image_path']))) {
     $form['gt']['ld']['image']['LD_header_image_preview'] = array(
       '#type' => 'markup',
-      '#value' => !empty($settings['gt']['ld']['LD_header_image_path']) ?
-          theme('image', $settings['gt']['ld']['LD_header_image_path']) : '',
+      '#value' => theme('image', $settings['gt']['ld']['LD_header_image_path'],
     );
   }
   $form['gt']['ld']['media-queries-wrapper'] = array(
