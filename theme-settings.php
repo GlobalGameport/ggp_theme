@@ -172,7 +172,7 @@ function ggp_theme_settings_submit($form, &$form_state) {
   $style = "\n" . 'body {background:repeat-no url(' . $path . ');}';
   $css = $comment . '@media ' . $media_query . ' {' . "\n" . $style . "\n" . '}';
   $layouts[] = check_plain($css);
-
+  $layout_data = implode("\n", $layouts);
 
   $theme = $form_state['build_info']['args'][0];
   $path  = "public://at_css";
