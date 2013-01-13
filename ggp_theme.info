@@ -10,7 +10,7 @@
 
 
 	;----------// Modular stylesheets
-	
+
 	stylesheets[all][] = css/html-elements.css
 	stylesheets[all][] = css/forms.css
 	stylesheets[all][] = css/tables.css
@@ -26,34 +26,34 @@
 	stylesheets[all][] = css/tabs.css
 	stylesheets[all][] = css/dark.css
 	stylesheets[print][] = css/print.css
-	
-	
+
+
 	; Disabled styles - un-comment if you need these.
 	;stylesheets[all][] = css/admin-section.css
 	;stylesheets[all][] = css/panel-panes.css
-	
+
 
   scripts[] = js/menu.js
-	
+
 	;----------// Regions
 
 	regions[sidebar_first]     = Sidebar first
 	regions[sidebar_second]    = Sidebar second
-	
+
 	regions[content]           = Main Content
-	
+
 	regions[highlighted]       = Highlighted
 	regions[content_aside]     = Aside
-	
+
 	regions[secondary_content] = Secondary
 	regions[tertiary_content]  = Tertiary
-	
+
 	regions[footer]            = Footer
 	regions[leaderboard]       = Leaderboard
 	regions[header]            = Header
 	regions[menu_bar]          = Menu Bar
 	regions[help]              = Help
-	
+
 	regions[page_top]          = Page top
 	regions[page_bottom]       = Page bottom
 
@@ -61,7 +61,7 @@
   regions[three_25_25_50_first]  = 3col 25-25-50 Gpanel col 1
   regions[three_25_25_50_second] = 3col 25-25-50 Gpanel col 2
   regions[three_25_25_50_third]  = 3col 25-25-50 Gpanel col 3
-  
+
 ;----------// Site Features
 	features[] = logo
 	features[] = name
@@ -86,7 +86,7 @@
   settings[bigscreen_sidebar_first]  = 160
   settings[bigscreen_sidebar_second] = 310
   settings[bigscreen_set_max_width]  = 0
-  settings[bigscreen_max_width]      = 1125 
+  settings[bigscreen_max_width]      = 1125
   settings[bigscreen_media_query]    = 'only screen and (min-width:1025px)'
 
   ; Tablet landscape
@@ -166,6 +166,6 @@
   settings[menu_item_span_elements] = 0
 
 
-version = "7.x-1.x-dev"
+version = "7.x-1.0-rc1"
 core = "7.x"
 project = "ggp_theme"
