@@ -1,0 +1,248 @@
+/**
+ * Use this file to conditionally override styles for devices.
+ * If you adjust the media queries in the theme settings you should
+ * adjust them here so they match.
+ */
+
+/* Smartphone portrait */
+@media only screen and (max-width:320px) {
+}
+
+/* Smartphone landscape */
+@media only screen and (min-width:321px) and (max-width:480px) {
+}
+
+/* Tablet portrait */
+@media only screen and (min-width:481px) and (max-width:768px) {
+}
+
+/* Tablet landscape */
+@media only screen and (min-width:769px) and (max-width:1024px) {
+}
+
+/* Standard layout */
+@media only screen and (min-width:1025px) {
+/*
+body, html { border:0; width:100%; height:100%; font-family:Georgia, "Times New Roman", Times, serif;}
+a{color:#fc0; }
+a:hover { text-decoration:underline; color:#fff; }
+
+
+.sidebar-left-content {
+padding-left:2px;
+}
+.sidebar-right-content {
+margin-left:4px;
+margin-right:4px;
+}
+/* THEME */
+
+/*/////////////phexomatstart/////////////*/
+/*
+div.terms  {float:left; padding-top:6px; font-size: 8pt;}
+div.terms a, .submitted {color:#888; text-decoration:none; }
+div.terms a:hover {color:#acacac; text-decoration:underline;}
+
+div.links  { padding-top:4px;}
+div.links a {color:#888;text-decoration:none; }
+div.links a:hover {color:#acacac;text-decoration:underline;}
+
+h2.title  {width:613px; height:35px; padding:10px 10px 0 10px; background: url('../images/content-header.png') no-repeat; font: 13pt Tahoma; font-weight:bold;text-align:center; line-height:25px;}
+
+.comment h3{ background:#111; text-align:left;  height:30px; font-family:Tahoma, Geneva, sans-serif; font-size:10pt;  font-weight:bold; line-height:28px;}
+.comment h3 a {text-decoration:none;margin-left:15px;}
+.comment{ background:#444; padding:10px 10px 10px; font: 10pt Arial }
+.comment comment-published clear-block {font: 10pt Arial;padding:10px 10px 10px;}
+
+.comment_reply { float:right;}
+.comment_reply a:hover{color:#fff; text-decoration:underline;}
+.comment_reply a {color:#888; text-decoration:none;}
+
+.tabs { float:right;}
+
+.form-submit{color:#C00; width:150px; height:40px; font-size:12pt; margin-bottom:15px;  margin-top:15px;}
+
+.item-list{}
+.form-item{ margin-left:5px;}
+.clear-block h2 {color:#fff; text-align:center; }
+.clear-block{color:#fff;}
+
+.openid-link{}
+
+.form-text { width:200px;  font-size:11pt; font-family:Tahoma, Geneva, sans-serif; font-size:14pt;}
+
+.messages status, messages error{ color:#F00;}
+
+
+/*.admin-menu a {font-size:10pt; background:#222; color:#fff;}
+.admin-menu a:hover{ background:#4c77b3;}*/
+
+
+
+
+
+/*/////////////phexend/////////////*/
+/*
+#main {
+background: url('../images/content-bg.png') repeat-y;
+}
+
+
+#top {
+background: url('../images/top-bg.png') repeat-x;
+margin-top:-10px;
+}
+
+#partner-title {
+background: url('../images/topmenu.png') no-repeat 0 -150px;
+text-align:right;
+height:30px;
+padding:9px 0 0 0 ; 
+}
+#partner-title div {
+margin-right:15px;
+}
+
+/* MENUS */
+/*
+#top-links ul.menu {
+	height:39px;
+	list-style: none;
+	float: left;
+	margin:0;
+	padding:0;
+
+}
+#top-links ul.menu li {
+	float: left;
+	list-style: none;
+	padding:0;
+	margin:0;
+}
+#top-links ul.menu li a {
+	float: left;
+	text-decoration: none;
+	color: #ccc;
+	padding: 9px 15px 0 0 ;
+	font: 800 17px "Thoma", Helvetica, sans-serif;
+	background: url('../images/topmenu.png') no-repeat right -50px;
+}
+#top-links ul.menu li a span {
+	float: left;
+	padding-right: 12px;
+	display: block;
+	margin-top: -9px;
+	height: 35px;
+	background: url("../images/topmenu.png") -30px 0 ;
+}
+#top-links ul.menu li.first a span{
+	padding-right: 21px;
+	background: url("../images/topmenu.png") no-repeat left top;	
+}
+
+#top-links ul.menu li a:hover, #top-links ul.menu li.active-trail a {
+ 	color: #F60;
+	background: url("../images/topmenu.png")  right -100px;
+}
+
+
+/* Left MENU*/
+/*
+#main .block-menu a {
+	text-decoration: none;
+	border:solid;
+	border-color:#282828; border-width:1px;
+	
+	
+}
+#main .block-menu h2 { height:25px;background: url("../images/menu2_bg.jpg"); text-align:center; font:11pt Tahoma; line-height:25px;}
+#main .block-menu div {}
+#main .block-menu div ul {
+	padding:0;
+	margin:0;
+	
+}
+#main .block-menu div ul li {
+	background: url("../images/menu.png") 0 -30px;
+	margin:1px;
+	list-style: none;
+	background-color:#282828;
+	
+}
+#main .block-menu div ul li a {
+	background: url("../images/menu.png") 0 -60px;
+	padding-left:15px;
+	height:18px;
+	width:129px;
+	display:block;
+	font: 10pt Tahoma;
+	background-color:#282828;
+	
+	
+}
+#main .block-menu div ul li a:hover, #main .block-menu div ul li.active-trail>a{
+color: #F60;
+}
+
+#main .block-menu div ul li.expanded a {
+	background-position: 0 -90px;
+}
+
+
+
+
+
+
+/* NODES */
+/*
+.node-title {width:613px; height:35px; padding:10px 10px 0 10px; background: url('../images/content-header.png') no-repeat; font: 13pt Tahoma; font-weight:bold;text-align:center; }
+.node-title span, .node-title a {text-decoration:none;margin:5px auto;  color:#fefefe; line-height:25px;}
+.node-title a:hover { text-decoration:underline; color:#fff;}
+
+div.node-content { padding-top:3px; padding-bottom:3px;}
+span.submitted{padding-bottom:15px; padding-top:15px; color:#999;}
+span.submitted a, .submitted a{color:#cf1716; text-decoration:none; font-weight:bold;}
+span.submitted a:hover, .submitted a:hover { text-decoration:underline;font-weight:bold;}
+
+.node-content {
+	width: 613px;
+	background: url('../images/content-body.png') repeat-y center top;
+	padding:0 10px 5px 10px;
+	font: 10pt Arial;
+}
+
+.node-content a {font-weight:bold; color:#fff; text-decoration:none;}
+.node-content a:hover {font-weight:bold; color:#cf1f2e;text-decoration:underline;}
+
+.content a {font-weight:bold; color:#fff;text-decoration:underline;}
+.content a:hover {font-weight:bold; color:#cf1f2e;text-decoration:underline;}
+
+.node-footer {
+	width: 613px;
+	height: 30px;
+	padding: 5px 10px 0 10px;
+	background: url('../images/content-footer.png') no-repeat;
+	font: 10pt Tahoma;
+	text-align:right;
+}
+
+
+#footer {
+height:200px;
+background:url('../images/footer.png');
+}
+
+/* Flash Message */
+/*
+div.messages {
+border-top:black medium solid;
+border-bottom:black medium solid;
+padding:4px 4px 4px 4px;
+margin:10px 0 10px 0;
+background:gray;
+}
+
+*/
+
+
+}
