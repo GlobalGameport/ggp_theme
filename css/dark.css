@@ -76,20 +76,6 @@ a#rss1:hover { text-decoration: none;background-position:left -160px; }
  
  
  
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
 
 body {
   color:#aeaeae;
@@ -137,8 +123,6 @@ table tr.warning.merge-up td,
   color:#a52d26;
   text-decoration:underline;
 }
-
-
 
 thead th {
   color:#657b83;
@@ -348,6 +332,12 @@ ul li.collapsed {
 ul li.expanded {
   list-style-image: url(images/dark/arrow-down.png);
 }
+/*.poll .bar {
+  background:#BBB;
+}
+.poll .bar .foreground {
+  background:#d33682;
+}*/
 table.views-entry {
   background:#000;
   color:#586e75;
