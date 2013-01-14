@@ -313,3 +313,34 @@ function _unique_id($id) {
     return $id . '-' . $ids[$id]++;
   }
 }
+
+
+/**
+* Override theme_media_gallery_item() - media_gallery/media_gallery.theme.inc
+*/
+function ggp_theme_media_gallery_item($variables) {
+  $image = $variables['image'];
+  $link_path = $variables['link_path'];
+  $attributes = array();
+
+  if (!empty($variables['classes'])) {
+    $attributes['class'] = $variables['classes'];
+  }
+  if (!empty($variables['title'])) {
+    $new_image = str_replace(array('title=""', 'alt=""'), array('', ''), $image);
+    $image = str_replace('/>', ' title="'.$variables['title'].'" alt="'.$variables['title'].'" />', $new_image);;
+  }
+
+  // FANCYBOX HACK
+  preg_match('|\/sites\/(.*)\/files\/styles\/media_gallery_thumbnail\/public\/([^\"]*)|', $image, $matches);
+  $link_path = 'sites/'.$matches[1].'/files/styles/media_gallery_large/public/' . $matches[2];
+  $attributes['class'][] = 'fancybox';
+  $attributes['rel'][] = 'gallery';
+  // FANCYBOX HACK
+//}
+
+  $item = '<div class="media-gallery-item"><div class="top"><div class="top-inset-1"><div class="top-inset-2"></div></div></div><div class="gallery-thumb-outer"><div class="gallery-thumb-inner">';
+  $item .= empty($variables['no_link']) ? l($image, $link_path, array('html' => TRUE, 'attributes' => $attributes)) : $image;
+  $item .= '</div></div><div class="bottom"><div class="bottom-inset-1"><div class="bottom-inset-2"></div></div></div></div>';
+  return $item;
+}
