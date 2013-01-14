@@ -166,6 +166,6 @@
   settings[menu_item_span_elements] = 0
 
 
-version = "7.x-1.0-rc1"
+version = "7.x-1.0-rc2"
 core = "7.x"
 project = "ggp_theme"
