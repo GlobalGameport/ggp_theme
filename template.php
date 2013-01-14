@@ -332,12 +332,12 @@ function ggp_theme_media_gallery_item($variables) {
   }
 
   // FANCYBOX HACK
-  preg_match('|\/sites\/(.*)\/files\/styles\/media_gallery_thumbnail\/public\/([^\"]*)|', $image, $matches);
-  $link_path = 'sites/'.$matches[1].'/files/styles/media_gallery_large/public/' . $matches[2];
-  $attributes['class'][] = 'fancybox';
-  $attributes['rel'][] = 'gallery';
-  // FANCYBOX HACK
-//}
+  if(!isset($variables['gallery'])) {
+    preg_match('|\/sites\/(.*)\/files\/styles\/media_gallery_thumbnail\/public\/([^\"]*)|', $image, $matches);
+    $link_path = 'sites/'.$matches[1].'/files/styles/media_gallery_large/public/' . $matches[2];
+    $attributes['class'][] = 'fancybox';
+    $attributes['rel'][] = 'gallery';
+  }
 
   $item = '<div class="media-gallery-item"><div class="top"><div class="top-inset-1"><div class="top-inset-2"></div></div></div><div class="gallery-thumb-outer"><div class="gallery-thumb-inner">';
   $item .= empty($variables['no_link']) ? l($image, $link_path, array('html' => TRUE, 'attributes' => $attributes)) : $image;
