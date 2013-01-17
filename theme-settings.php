@@ -180,16 +180,15 @@ function ggp_theme_settings_submit($form, &$form_state) {
   $media_query = $form_state['values']['HD_media_query'];
   $bg_color = $form_state['values']['HD_bg_color'];
 
-  $style = "\n" . 'body {background: no-repeat url(' . file_create_url($path) . ') '. $bg_color . ';}';
+  $style = "\n" . '#incredible_bg {background: no-repeat fixed center top transparent url(' . file_create_url($path) . ')} body {background: ' . $bg_color . ';}';
   $css = $comment . '@media ' . $media_query . ' {' . "\n" . $style . "\n" . '}';
   $layouts[] = check_plain($css);
 
   $comment        = "/* LD Background */\n";
   $path = $form_state['values']['LD_bg_image_path'];
   $media_query = $form_state['values']['LD_media_query'];
-  $bg_color = $form_state['values']['LD_bg_color'];
 
-  $style = "\n" . 'body {background:no-repeat url(' . file_create_url($path) . ') ' . $bg_color . ';}';
+  $style = "\n" . '#incredible_bg {background: no-repeat fixed center top transparent url(' . file_create_url($path) . ')} body {background: ' . $bg_color . ';}';
   $css = $comment . '@media ' . $media_query . ' {' . "\n" . $style . "\n" . '}';
   $layouts[] = check_plain($css);
   $layout_data = implode("\n", $layouts);

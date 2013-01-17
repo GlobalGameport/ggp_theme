@@ -30,7 +30,7 @@
 
 .container {background: rgba(0,0,0,0.75);} 
 #lines_top {background:url(../images/img_lines_top.png) repeat-x center -26px;}
-#incredible_bg {background:url(../images/temp_bg_ds3.jpg) no-repeat center top fixed;}
+/* #incredible_bg {background:url(../images/temp_bg_ds3.jpg) no-repeat center top fixed;} */
  
 /* Header */
 #page > header { width:1064px;height:282px;border-bottom: 1px solid #333;margin:0 auto 12px;}

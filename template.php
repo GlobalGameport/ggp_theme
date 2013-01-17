@@ -1,15 +1,6 @@
 <?php
 
 /**
- * Preprocess and Process Functions SEE: http://drupal.org/node/254940#variables-processor
- * 1. Rename each function and instance of "adaptivetheme_subtheme" to match
- *    your subthemes name, e.g. if you name your theme "footheme" then the function
- *    name will be "footheme_preprocess_hook". Tip - you can search/replace
- *    on "adaptivetheme_subtheme".
- * 2. Uncomment the required function to use.
- */
-
-/**
  * Override or insert variables into the html templates.
  */
 function ggp_theme_preprocess_html(&$vars) {
@@ -120,36 +111,6 @@ function ggp_theme_preprocess_block(&$vars) {
 
 function ggp_theme_process_block(&$vars) {
 }
-// */
-
-/**
- * Add the Style Schemes if enabled.
- * NOTE: You MUST make changes in your subthemes theme-settings.php file
- * also to enable Style Schemes.
- */
-/* -- Delete this line if you want to enable style schemes.
-// DONT TOUCH THIS STUFF...
-function get_at_styles() {
-  $scheme = theme_get_setting('style_schemes');
-  if (!$scheme) {
-    $scheme = 'style-default.css';
-  }
-  if (isset($_COOKIE["atstyles"])) {
-    $scheme = $_COOKIE["atstyles"];
-  }
-  return $scheme;
-}
-if (theme_get_setting('style_enable_schemes') == 'on') {
-  $style = get_at_styles();
-  if ($style != 'none') {
-    drupal_add_css(path_to_theme() . '/css/schemes/' . $style, array(
-      'group' => CSS_THEME,
-      'preprocess' => TRUE,
-      )
-    );
-  }
-}
-// */
 
 /**
  * Override or insert variables into the field template.
@@ -203,19 +164,11 @@ function ggp_theme_breadcrumb($vars) {
  * Adds collapse to Menu.
  */
 function ggp_theme_menu_link(array $variables) {
-  // $cookieE = &drupal_static(__FUNCTION__);
-  // $cookieC = &drupal_static(__FUNCTION__);
   $element = $variables['element'];
   $sub_menu = '';
   $collapse = '';
   $collapsed = false;
 
-
-// // Parse the cookie, if it is enabled.
-// if (!isset($cookieC) || !isset($cookieE)) {
-//         $cookieE = explode(',', @$_COOKIE['Drupal_expanded_menus']);
-//         $cookieC = explode(',', @$_COOKIE['Drupal_collapsed_menus']);
-// }
   // If there are children, but they were not loaded, load them.
   if ($element['#original_link']['has_children'] && empty($element['#below'])) {
    $element['#below'] = _menu_subtree($element['#original_link']['menu_name'], $element['#original_link']['mlid']);
@@ -224,14 +177,10 @@ function ggp_theme_menu_link(array $variables) {
   $element['#attributes']['id'] = 'menu-item-' . _unique_id($element['#original_link']['mlid']);
 
   // If the current item can expand, and is neither saved as open nor in the active trail, close it.
-  if ($element['#original_link']['has_children'] && !$element['#original_link']['in_active_trail'] ) { //&& in_array($element['#attributes']['id'], $cookieC) && !in_array($element['#attributes']['id'], $cookieE)
+  if ($element['#original_link']['has_children'] && !$element['#original_link']['in_active_trail'] ) {
     $variables['element']['#attributes']['class'][] = 'collapsed';
     $collapsed = true;
   }
-  // if($collapsed == true && in_array($element['#attributes']['id'], $cookieE)){
-  //   $collapsed == false;
-  // }
-
 
   if ($element['#below']) {
     $collapse = (!$collapsed) ? '<span class="collapse"></span>': '<span class="expand"></span>';
@@ -270,7 +219,6 @@ function _menu_subtree($menu_name, $mlid) {
     return array();
   }
 
-
   // Traverse the tree using the ancestor path.
   foreach ($index[$mlid]['parents'] as $id) {
     $key = $index[$id]['key'];
@@ -286,6 +234,9 @@ function _menu_subtree($menu_name, $mlid) {
   $key = $index[$mlid]['key'];
   return isset($tree[$key]) ? menu_tree_output($tree[$key]['below']) : array();
 }
+/**
+ * Menu Index Helper function.
+ */
 function _menu_index($tree, $ancestors = array(), $parent = NULL) {
   $index = array();
   if ($parent) {
@@ -328,11 +279,11 @@ function ggp_theme_media_gallery_item($variables) {
   }
   if (!empty($variables['title'])) {
     $new_image = str_replace(array('title=""', 'alt=""'), array('', ''), $image);
-    $image = str_replace('/>', ' title="'.$variables['title'].'" alt="'.$variables['title'].'" />', $new_image);;
+    $image = str_replace('/>', ' title="' . $variables['title'] . '" alt="' . $variables['title'] . '" />', $new_image);;
   }
 
   // FANCYBOX HACK
-  if(!isset($variables['gallery'])) {
+  if (!isset($variables['gallery'])) {
     preg_match('|\/sites\/(.*)\/files\/styles\/media_gallery_thumbnail\/public\/([^\"]*)|', $image, $matches);
     $link_path = 'sites/'.$matches[1].'/files/styles/media_gallery_large/public/' . $matches[2];
     $attributes['class'][] = 'fancybox';

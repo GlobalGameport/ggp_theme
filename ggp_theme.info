@@ -33,7 +33,8 @@
 	;stylesheets[all][] = css/panel-panes.css
 
 
-  scripts[] = js/menu.js
+  scripts[] = js/ggp_theme.js
+  scripts[] = js/jquery.backstretch.min.js
 
 	;----------// Regions
 
@@ -82,15 +83,15 @@
   settings[bigscreen_page_unit]      = 'px'
   settings[bigscreen_sidebar_unit]   = 'px'
   settings[bigscreen_max_width_unit] = 'px'
-  settings[bigscreen_page_width]     = 1125
-  settings[bigscreen_sidebar_first]  = 160
-  settings[bigscreen_sidebar_second] = 310
+  settings[bigscreen_page_width]     = 1088
+  settings[bigscreen_sidebar_first]  = 184
+  settings[bigscreen_sidebar_second] = 324
   settings[bigscreen_set_max_width]  = 0
-  settings[bigscreen_max_width]      = 1125
+  settings[bigscreen_max_width]      = 1088
   settings[bigscreen_media_query]    = 'only screen and (min-width:1025px)'
 
   ; Tablet landscape
-  settings[tablet_landscape_layout]         = 'three-col-grail'
+  settings[tablet_landscape_layout]         = 'two-col-stack'
   settings[tablet_landscape_page_unit]      = 'px'
   settings[tablet_landscape_sidebar_unit]   = 'px'
   settings[tablet_landscape_max_width_unit] = 'px'
@@ -164,8 +165,3 @@
 
   ; Extra markup
   settings[menu_item_span_elements] = 0
-
-
-version = "7.x-1.0-rc2"
-core = "7.x"
-project = "ggp_theme"
