@@ -34,6 +34,18 @@ function ggp_theme_preprocess_html(&$vars) {
       );
     }
   }
+
+  //include custom css from google cdn
+  
+  $custom_font = varaible_get('custom_font');
+  drupal_add_css($custom_font, array(
+    'preprocess' => variable_get('preprocess_css', '') == 1 ? TRUE : FALSE,
+        'group' => CSS_THEME,
+        'media' => 'all',
+        'every_page' => TRUE,
+        'weight' => 1000,
+        )
+  );
  /**
   * Load IE specific stylesheets
   * AT automates adding IE stylesheets, simply add to the array using

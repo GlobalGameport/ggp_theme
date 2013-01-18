@@ -146,6 +146,31 @@ function ggp_theme_form_system_theme_settings_alter(&$form, &$form_state)  {
     '#size' => 100,
     '#required' => TRUE
   );
+  // Css settings
+  $form['css'] = array(
+    '#type' => 'vertical_tabs',
+    '#weight' => -10,
+    '#default_tab' => 'defaults',
+    '#attached' => array(
+      'css' => array(drupal_get_path('theme', 'adaptivetheme') . '/css/at.settings.form.css'),
+    ),
+  );
+  $form['css']['font'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Custom Font Settings'),
+    '#description' => t('Custom theme settings for css.'),
+    '#attributes' => array(
+      'class' => array('at-layout-form'),
+    ),
+  );
+  $form['css']['font']['custom_font'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Url for custom css font file'),
+    '#default_value' => variable_get('custom_css', 'http://fonts.googleapis.com/css?family=Homenaje%7CShanti%7COswald'),
+    '#description' => t('This CSS file will e included in head'),
+    '#size' => 100,
+    '#required' => TRUE
+    );
 
   $form['#submit'][] = 'ggp_theme_settings_submit'; 
   return $form;
@@ -205,6 +230,8 @@ function ggp_theme_settings_submit($form, &$form_state) {
 
   variable_set($theme . '_responsive_background_file_path', $path);
   variable_set($theme . '_responsive_background_file_css', $file);
+
+  variable_set('custom_font', $values['custom_font']);
 }
 
 
