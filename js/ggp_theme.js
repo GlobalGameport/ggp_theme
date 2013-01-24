@@ -37,7 +37,7 @@
 	 	attach: function (context, settings) {
 	 		var pattern = /url\(|\)|"|'/g;
 			var bgUrl = $('#incredible_bg').css('backgroundImage').replace(pattern,"");
-	 		$('#incredible_bg', context).backstretch(settings.ggp_theme.background);
+	 		$.backstretch(settings.ggp_theme.background);
 	 	}
 	 };
 })(jQuery);

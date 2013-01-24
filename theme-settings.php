@@ -267,7 +267,7 @@ function ggp_theme_form_system_theme_settings_alter(&$form, &$form_state)  {
     '#description' => t('<h3>Background Image</h3>'),
   );
   $form['at']['background']['bg_image_path'] = array(
-    '#type' => 'text',
+    '#type' => 'textfield',
     '#size' => 60,
     '#titile' => t('Path to custom background image'),
     '#description' => t('The path to the file you would like to use as your background image.'),
@@ -277,10 +277,10 @@ function ggp_theme_form_system_theme_settings_alter(&$form, &$form_state)  {
     '#type' => 'file',
     '#title' => t('Upload background image'),
     '#description' => t('If you don\'t have direct file access to the server, use this field to upload your background image.'),
-    '#maxlength' => 60,
+    '#maxlength' => 40,
   );
 
-  $form['#submit'][] = 'ggp_theme_settings_submit'; 
+  $form['#submit'][] = 'ggp_theme_settings_submit';
   $form['at']['background']['#element_validate'][] = 'ggp_theme_settings_submit';
   return $form;
 }
