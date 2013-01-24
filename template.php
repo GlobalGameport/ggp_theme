@@ -4,6 +4,7 @@
  * Override or insert variables into the html templates.
  */
 function ggp_theme_preprocess_html(&$vars) {
+  global $theme_key;
   // Load the media queries styles
   // Remember to rename these files to match the names used here - they are
   // in the CSS directory of your subtheme.
@@ -12,40 +13,24 @@ function ggp_theme_preprocess_html(&$vars) {
     'ggp_theme.responsive.gpanels.css'
   );
   load_subtheme_media_queries($media_queries_css, 'ggp_theme');
+  drupal_add_js(array('ggp_theme' => array('background' => file_create_url(file_build_uri(theme_get_setting('bg_image_path'))))), 'setting');
 
- // Load Layout CSS
-  global $theme;
-  $path = "public://at_css";
-
-  $responsive_css = $theme . '_responsive_background_file_css';
-  $file = variable_get($responsive_css);
-
-  // Load the Responsive layout
-  if (!empty($file)) {
-    $filepath = $path . '/' . $file;
-    if (file_exists($filepath)) {
-      drupal_add_css($filepath, array(
-        'preprocess' => variable_get('preprocess_css', '') == 1 ? TRUE : FALSE,
-        'group' => CSS_THEME,
-        'media' => 'all',
-        'every_page' => TRUE,
-        'weight' => 1000,
-        )
-      );
+   // Fonts
+  $fonts = array(
+    'bf'  => 'base_font',
+    'snf' => 'site_name_font',
+    'ssf' => 'site_slogan_font',
+    'ptf' => 'page_title_font',
+    'ntf' => 'node_title_font',
+    'ctf' => 'comment_title_font',
+    'btf' => 'block_title_font'
+  );
+  $families = get_font_families($fonts, $theme_key);
+  if (!empty($families)) {
+    foreach ($families as $family) {
+      $vars['classes_array'][] = $family;
     }
   }
-
-  //include custom css from google cdn
-  
-  $custom_font = varaible_get('custom_font');
-  drupal_add_css($custom_font, array(
-    'preprocess' => variable_get('preprocess_css', '') == 1 ? TRUE : FALSE,
-      'group' => CSS_THEME,
-      'media' => 'all',
-      'every_page' => TRUE,
-      'weight' => 1000,
-      )
-  );
  /**
   * Load IE specific stylesheets
   * AT automates adding IE stylesheets, simply add to the array using

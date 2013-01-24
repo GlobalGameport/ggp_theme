@@ -34,7 +34,7 @@ border: 1px solid rgba(221,221,221,0.08);
 }
 .region-sidebar-first .block-inner {}
 .region-sidebar-first .block-title {
-font-family: Homenaje, Arial;
+font-family: Arial;
 color: #ddd;
 text-shadow: 3px 3px 4px #000;
 padding: 2px 1px 5px;
@@ -51,7 +51,7 @@ background: none; /* < < < bg_img_menue_titel */
 /* Second Sidebar */ 
 .region-sidebar-second .block-inner {}
 .region-sidebar-second .block-title {
-font-family: Homenaje, Arial;
+font-family: Arial;
 color: #ddd;
 text-shadow: 3px 3px 4px #000;
 padding: 2px 1px 5px;

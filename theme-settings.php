@@ -1,236 +1,305 @@
 <?php
 
-/**
- * USAGE:
- * 1 - To use this file replace "adaptivetheme_subtheme" with the name of
- *     your theme in the function below.
- * 2 - Set 'style_enable_schemes' to 'on' in your themes info file (its near the bottom of that file).
- * 2 - Build or un-comment the forms. The Style Schemes form is ready to use,
- *     just un-comment it.
- */
+
+// Include Google Fonts Stuff
+include_once(drupal_get_path('theme', 'adaptivetheme') . '/inc/google.web.fonts.inc');
 
 // Replace 'adaptivetheme_subtheme' with your themes name, eg:
 // function your_themes_name_form_system_theme_settings_alter(&$form, &$form_state)
 function ggp_theme_form_system_theme_settings_alter(&$form, &$form_state)  {
-  // General "alters" use a form id. Settings should not be set here. The only
-  // thing useful about this is if you need to alter the form for the running
-  // theme and *not* the theme setting.
-  if (isset($form_id)) {
-    return;
-  }
 
-
- 
-  // Layout settings
-  $form['gt'] = array(
-    '#type' => 'vertical_tabs',
-    '#weight' => -10,
-    '#default_tab' => 'defaults',
-    '#attached' => array(
-      'css' => array(drupal_get_path('theme', 'adaptivetheme') . '/css/at.settings.form.css'),
-    ),
-  );
-
-
-  // High Res
-  $form['gt']['hd'] = array(
-    '#type' => 'fieldset',
-    '#title' => t('HD Res'),
-    '#description' => t('<h3>Standard Layout</h3><p>The huge layout is for HD resolutions.'),
-    '#attributes' => array(
-      'class' => array('at-layout-form'),
-    ),
-  );
-  $form['gt']['hd']['image'] = array(
-    '#type' => 'fieldset',
-    '#title' => t('Background Image'),
-    '#description' => t('Background Image.'),
-    '#attributes' => array(
-      'class' => array('at-media-queries'),
-    ),
-    );
-  $form['gt']['hd']['image']['HD_bg_image'] = array(
-    '#type' => 'file',
-    '#title' => t('bg image'),
-    '#maxlength' => 40,
-  );
-  $form['gt']['hd']['image']['HD_bg_image_path'] = array(
-    '#type' => 'value',
-    '#value' => theme_get_setting('HD_bg_image_path') ,
-  );
-  if (theme_get_setting('HD_bg_image_path') != NULL) {
-    $form['gt']['hd']['image']['HD_bg_image_preview'] = array(
-      '#type' => 'markup',
-      '#value' => theme('image', array('path' => theme_get_setting('HD_bg_image_path'))),
-    );
-  }
-  $form['gt']['hd']['image']['HD_bg_color'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Background color'),
-    '#default_value' => (theme_get_setting('HD_bg_color') != NULL) ? theme_get_setting('HD_bg_color') :  "#000000",
-    '#description' => t('CSS Syntax e.g. <i>#000000</i> or <i>rgba(100, 123, 55, 0.1)</i>'),
-    '#size' => 100,
-    '#required' => TRUE
-  );
-  $form['gt']['hd']['media-queries-wrapper'] = array(
-    '#type' => 'fieldset',
-    '#title' => t('Standard Screen Media Queries'),
-    '#weight' => 1,
-    '#attributes' => array(
-      'class' => array('at-media-queries'),
-    ),
-  );
-  $form['gt']['hd']['media-queries-wrapper']['HD_media_query'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Media query for this Background'),
-    '#default_value' => (theme_get_setting('HD_media_query') != NULL) ? theme_get_setting('HD_media_query') :  "only screen and (min-width:1200px)",
-    '#description' => t('Do not include @media, its included automatically.'),
-    '#field_prefix' => '@media',
-    '#size' => 100,
-    '#required' => TRUE
-  );
-  // Low Res
-  $form['gt']['ld'] = array(
-    '#type' => 'fieldset',
-    '#title' => t('Low Res'),
-    '#description' => t('<h3>Standard Layout</h3><p>The Low Res for Low Res.'),
-    '#attributes' => array(
-      'class' => array('at-layout-form'),
-    ),
-  );
-  $form['gt']['ld']['image'] = array(
-    '#type' => 'fieldset',
-    '#title' => t('Background Image'),
-    '#description' => t('Background Image.'),
-    '#attributes' => array(
-      'class' => array('at-media-queries'),
-    ),
-    );
-  $form['gt']['ld']['image']['LD_bg_image'] = array(
-    '#type' => 'file',
-    '#title' => t('bg image'),
-    '#maxlength' => 40,
-  );
-  $form['gt']['ld']['image']['LD_bg_image_path'] = array(
-    '#type' => 'value',
-    '#value' => theme_get_setting('LD_bg_image_path'),
-  );
-  if (theme_get_setting('LD_bg_image_path') != NULL) {
-    $form['gt']['ld']['image']['LD_bg_image_preview'] = array(
-      '#type' => 'markup',
-      '#value' => theme('image', array('path' => theme_get_setting('LD_bg_image_path'))),
-    );
-  }
-    $form['gt']['ld']['image']['LD_bg_color'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Background color'),
-    '#default_value' => (theme_get_setting('LD_bg_color') != NULL) ? theme_get_setting('LD_bg_color') :  "#000000",
-    '#description' => t('CSS Syntax e.g. <i>#000000</i> or <i>rgba(100, 123, 55, 0.1)</i>'),
-    '#size' => 100,
-    '#required' => TRUE
-  );
-  $form['gt']['ld']['media-queries-wrapper'] = array(
-    '#type' => 'fieldset',
-    '#title' => t('Standard Screen Media Queries'),
-    '#weight' => 1,
-    '#attributes' => array(
-      'class' => array('at-media-queries'),
-    ),
-  );
-  $form['gt']['ld']['media-queries-wrapper']['LD_media_query'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Media query for this Background'),
-    '#default_value' => (theme_get_setting('LD_media_query') != NULL) ? theme_get_setting('LD_media_query') : "only screen and (max-width:1200px)" ,
-    '#description' => t('Do not include @media, its included automatically.'),
-    '#field_prefix' => '@media',
-    '#size' => 100,
-    '#required' => TRUE
-  );
   // Css settings
-  $form['css'] = array(
-    '#type' => 'vertical_tabs',
-    '#weight' => -10,
-    '#default_tab' => 'defaults',
-    '#attached' => array(
-      'css' => array(drupal_get_path('theme', 'adaptivetheme') . '/css/at.settings.form.css'),
-    ),
-  );
-  $form['css']['font'] = array(
+  $form['at']['font'] = array(
     '#type' => 'fieldset',
-    '#title' => t('Custom Font Settings'),
-    '#description' => t('Custom theme settings for css.'),
-    '#attributes' => array(
-      'class' => array('at-layout-form'),
+    '#title' => t('Fonts'),
+    '#description' => t('<h3>Fonts</h3><p>Here you can set a default font which will style all text. You can also set unique fonts for the page title, site name and slogan, and fonts for node, comment and block titles. First select the font type (Websafe or Google web font), then select the font family. You can preview Google web fonts here: <a href="!link" target="_blank">http://www.google.com/webfonts</a></p>', array('!link' => 'http://www.google.com/webfonts')),
+  );
+  $form['at']['font']['base_font_wrapper'] = array (
+    '#type' => 'fieldset',
+    '#title' => t('Default font'),
+    '#attributes' => array('class' => array('font-element-wrapper'))
+  );
+  $form['at']['font']['base_font_wrapper']['base_font_type'] = array (
+    '#type' => 'select',
+    '#title' => t('Type'),
+    '#options' => array (
+      '' => t('Websafe font'),
+      'gwf' => t('Google font'),
+    ),
+    '#default_value' => theme_get_setting('base_font_type'),
+  );
+  $form ['at']['font']['base_font_wrapper']['base_font_container'] = array (
+    '#type' => 'container',
+    '#states' => array (
+      'visible' => array (
+        'select[name="base_font_type"]' => array (
+          'value' => ''
+        )
+      )
+    )
+  );
+  $form['at']['font']['base_font_wrapper']['base_font_container']['base_font'] = array(
+    '#type' => 'select',
+    '#title' => t('Font'),
+    '#default_value' => theme_get_setting('base_font'),
+    '#options' => array(
+      'bf-sss' => t('Trebuchet MS, Helvetica Neue, Arial, Helvetica, sans-serif'),
+      'bf-ssl' => t('Verdana, Geneva, Arial, Helvetica, sans-serif'),
+      'bf-a'   => t('Arial, Helvetica, sans-serif'),
+      'bf-cc'  => t('Calibri, Candara, Arial, Helvetica, sans-serif'),
+      'bf-m'   => t('Segoe UI, Myriad Pro, Myriad, Arial, Helvetica, sans-serif'),
+      'bf-l'   => t('Lucida Sans Unicode, Lucida Sans, Lucida Grande, Verdana, Geneva, sans-serif'),
+      'bf-ss'  => t('Garamond, Perpetua, Times New Roman, serif'),
+      'bf-sl'  => t('Georgia, Baskerville, Palatino, Palatino Linotype, Book Antiqua, Times New Roman, serif'),
+      'bf-ms'  => t('Consolas, Monaco, Courier New, Courier, monospace'),
     ),
   );
-  $form['css']['font']['custom_font'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Url for custom css font file'),
-    '#default_value' => variable_get('custom_css', 'http://fonts.googleapis.com/css?family=Homenaje%7CShanti%7COswald'),
-    '#description' => t('This CSS file will e included in head'),
-    '#size' => 100,
-    '#required' => TRUE
-    );
+  $form ['at'] ['font']['base_font_wrapper']['base_font_gwf_container'] = array (
+    '#type' => 'container',
+    '#states' => array (
+      'visible' => array (
+        'select[name="base_font_type"]' => array (
+          'value' => 'gwf'
+        )
+      )
+    )
+  );
+  $form['at']['font']['base_font_wrapper']['base_font_gwf_container']['base_font_gwf'] = array(
+    '#type' => 'select',
+    '#title' => t('Font'),
+    '#default_value' => theme_get_setting('base_font_gwf'),
+    '#options' => google_web_fonts_list_options(),
+  );
+  $form['at']['font']['page_title_font_wrapper'] = array (
+    '#type' => 'fieldset',
+    '#title' => t('Page Title'),
+    '#attributes' => array('class' => array('font-element-wrapper'))
+  );
+  $form['at']['font']['page_title_font_wrapper']['page_title_font_type'] = array (
+    '#type' => 'select',
+    '#title' => t('Type'),
+    '#options' => array (
+      '' => t('Websafe font'),
+      'gwf' => t('Google font'),
+    ),
+    '#default_value' => theme_get_setting('page_title_font_type')
+  );
+  $form['at']['font']['page_title_font_wrapper']['page_title_font_container'] = array (
+    '#type' => 'container',
+    '#states' => array (
+      'visible' => array (
+        'select[name="page_title_font_type"]' => array (
+          'value' => ''
+        )
+      )
+    )
+  );
+  $form['at']['font']['page_title_font_wrapper']['page_title_font_container']['page_title_font'] = array(
+    '#type' => 'select',
+    '#title' => t('Font'),
+    '#default_value' => theme_get_setting('page_title_font'),
+    '#options' => array(
+      'ptf-sss' => t('Candara, Trebuchet MS, Helvetica Neue, Arial, Helvetica, sans-serif'),
+      'ptf-ssl' => t('Verdana, Geneva, Arial, Helvetica, sans-serif'),
+      'ptf-a'   => t('Arial, Helvetica, sans-serif'),
+      'ptf-cc'  => t('Calibri, Candara, Arial, Helvetica, sans-serif'),
+      'ptf-m'   => t('Segoe UI, Myriad Pro, Myriad, Arial, Helvetica, sans-serif'),
+      'ptf-l'   => t('Lucida Sans Unicode, Lucida Sans, Lucida Grande, Verdana, Geneva, sans-serif'),
+      'ptf-ss'  => t('Garamond, Perpetua, Times New Roman, serif'),
+      'ptf-sl'  => t('Georgia, Baskerville, Palatino, Palatino Linotype, Book Antiqua, Times New Roman, serif'),
+      'ptf-ms'  => t('Consolas, Monaco, Courier New, Courier, monospace'),
+    ),
+  );
+  $form['at']['font']['page_title_font_wrapper']['page_title_font_gwf_container'] = array (
+    '#type' => 'container',
+    '#states' => array (
+      'visible' => array (
+        'select[name="page_title_font_type"]' => array (
+          'value' => 'gwf'
+        )
+      )
+    )
+  );
+  $form['at']['font']['page_title_font_wrapper']['page_title_font_gwf_container']['page_title_font_gwf'] = array(
+    '#type' => 'select',
+    '#title' => t('Font'),
+    '#default_value' => theme_get_setting('page_title_font_gwf'),
+    '#options' => google_web_fonts_list_options(),
+  );
+  // Node title font
+  $form['at']['font']['node_title_font_wrapper'] = array (
+    '#type' => 'fieldset',
+    '#title' => t('Node Title'),
+    '#attributes' => array('class' => array('font-element-wrapper'))
+  );
+  $form ['at']['font']['node_title_font_wrapper']['node_title_font_type'] = array (
+    '#type' => 'select',
+    '#title' => t('Type'),
+    '#options' => array (
+      '' => t('Websafe font'),
+      'gwf' => t('Google font'),
+    ),
+    '#default_value' => theme_get_setting('node_title_font_type')
+  );
+  $form['at']['font']['node_title_font_wrapper']['node_title_font_container'] = array (
+    '#type' => 'container',
+    '#states' => array (
+      'visible' => array (
+        'select[name="node_title_font_type"]' => array (
+          'value' => ''
+        )
+      )
+    )
+  );
+  $form['at']['font']['node_title_font_wrapper']['node_title_font_container']['node_title_font'] = array(
+    '#type' => 'select',
+    '#title' => t('Font'),
+    '#default_value' => theme_get_setting('node_title_font'),
+    '#options' => array(
+      'ntf-sss' => t('Candara, Trebuchet MS, Helvetica Neue, Arial, Helvetica, sans-serif'),
+      'ntf-ssl' => t('Verdana, Geneva, Arial, Helvetica, sans-serif'),
+      'ntf-a'   => t('Arial, Helvetica, sans-serif'),
+      'ntf-cc'  => t('Calibri, Candara, Arial, Helvetica, sans-serif'),
+      'ntf-m'   => t('Segoe UI, Myriad Pro, Myriad, Arial, Helvetica, sans-serif'),
+      'ntf-l'   => t('Lucida Sans Unicode, Lucida Sans, Lucida Grande, Verdana, Geneva, sans-serif'),
+      'ntf-ss'  => t('Garamond, Perpetua, Times New Roman, serif'),
+      'ntf-sl'  => t('Georgia, Baskerville, Palatino, Palatino Linotype, Book Antiqua, Times New Roman, serif'),
+      'ntf-ms'  => t('Consolas, Monaco, Courier New, Courier, monospace'),
+    ),
+  );
+  $form['at']['font']['node_title_font_wrapper']['node_title_font_gwf_container'] = array (
+    '#type' => 'container',
+    '#states' => array (
+      'visible' => array (
+        'select[name="node_title_font_type"]' => array (
+          'value' => 'gwf'
+        )
+      )
+    )
+  );
+  $form['at']['font']['node_title_font_wrapper']['node_title_font_gwf_container']['node_title_font_gwf'] = array(
+    '#type' => 'select',
+    '#title' => t('Font'),
+    '#default_value' => theme_get_setting('node_title_font_gwf'),
+    '#options' => google_web_fonts_list_options(),
+  );
+  // Block title font
+  $form ['at']['font'] ['block_title_font_wrapper'] = array (
+    '#type' => 'fieldset',
+    '#title' => t('Block Title'),
+    '#attributes' => array('class' => array('font-element-wrapper'))
+  );
+
+  $form ['at']['font']['block_title_font_wrapper']['block_title_font_type'] = array (
+    '#type' => 'select',
+    '#title' => t('Type'),
+    '#options' => array (
+      '' => t('Websafe font'),
+      'gwf' => t('Google font'),
+    ),
+    '#default_value' => theme_get_setting('block_title_font_type')
+  );
+  $form ['at']['font']['block_title_font_wrapper']['block_title_font_container'] = array (
+    '#type' => 'container',
+    '#states' => array (
+      'visible' => array (
+        'select[name="block_title_font_type"]' => array (
+          'value' => ''
+        )
+      )
+    )
+  );
+  $form['at']['font']['block_title_font_wrapper']['block_title_font_container']['block_title_font'] = array(
+    '#type' => 'select',
+    '#title' => t('Font'),
+    '#default_value' => theme_get_setting('block_title_font'),
+    '#options' => array(
+      'btf-sss' => t('Candara, Trebuchet MS, Helvetica Neue, Arial, Helvetica, sans-serif'),
+      'btf-ssl' => t('Verdana, Geneva, Arial, Helvetica, sans-serif'),
+      'btf-a'   => t('Arial, Helvetica, sans-serif'),
+      'btf-cc'  => t('Calibri, Candara, Arial, Helvetica, sans-serif'),
+      'btf-m'   => t('Segoe UI, Myriad Pro, Myriad, Arial, Helvetica, sans-serif'),
+      'btf-l'   => t('Lucida Sans Unicode, Lucida Sans, Lucida Grande, Verdana, Geneva, sans-serif'),
+      'btf-ss'  => t('Garamond, Perpetua, Times New Roman, serif'),
+      'btf-sl'  => t('Georgia, Baskerville, Palatino, Palatino Linotype, Book Antiqua, Times New Roman, serif'),
+      'btf-ms'  => t('Consolas, Monaco, Courier New, Courier, monospace'),
+    ),
+  );
+  $form ['at']['font']['block_title_font_wrapper']['block_title_font_gwf_container'] = array (
+    '#type' => 'container',
+    '#states' => array (
+      'visible' => array (
+        'select[name="block_title_font_type"]' => array (
+          'value' => 'gwf'
+        )
+      )
+    )
+  );
+  $form['at']['font']['block_title_font_wrapper']['block_title_font_gwf_container']['block_title_font_gwf'] = array(
+    '#type' => 'select',
+    '#title' => t('Font'),
+    '#default_value' => theme_get_setting('block_title_font_gwf'),
+    '#options' => google_web_fonts_list_options(),
+  );
+  $form['at']['size'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Font Size'),
+    '#description' => t('<h3>Font Size</h3>'),
+  );
+  $form['at']['size']['font_size'] = array(
+    '#type' => 'select',
+    '#title' => t('Font Size'),
+    '#default_value' => theme_get_setting('font_size'),
+    '#description' => t('This sets a base font-size on the body element - all text will scale relative to this value.'),
+    '#options' => array(
+      'fs-smallest' => t('Smallest'),
+      'fs-small'    => t('Small'),
+      'fs-medium'   => t('Medium'),
+      'fs-large'    => t('Large'),
+      'fs-largest'  => t('Largest'),
+    ),
+  );
+
+  // Background Image
+  $form['at']['background'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Background Image'),
+    '#description' => t('<h3>Background Image</h3>'),
+  );
+  $form['at']['background']['bg_image_path'] = array(
+    '#type' => 'text',
+    '#size' => 60,
+    '#titile' => t('Path to custom background image'),
+    '#description' => t('The path to the file you would like to use as your background image.'),
+    '#value' => theme_get_setting('bg_image_path') ,
+  );
+  $form['at']['background']['bg_image'] = array(
+    '#type' => 'file',
+    '#title' => t('Upload background image'),
+    '#description' => t('If you don\'t have direct file access to the server, use this field to upload your background image.'),
+    '#maxlength' => 60,
+  );
 
   $form['#submit'][] = 'ggp_theme_settings_submit'; 
+  $form['at']['background']['#element_validate'][] = 'ggp_theme_settings_submit';
   return $form;
 }
 /**
  * Save settings data.
- */
+*/
 function ggp_theme_settings_submit($form, &$form_state) {
   $settings = array();
   $values = $form_state['values'];
 
   
   // Check for a new uploaded file, and use that if available.
-  if ($file = file_save_upload('HD_bg_image')) {
+  if ($file = file_save_upload('bg_image')) {
     $file->status = FILE_STATUS_PERMANENT;
     if ($image = _ggp_theme_save_image($file)) {
       // Put new image into settings
-      $form_state['values']['HD_bg_image_path'] = $image['image_path'];
+      $form_state['values']['bg_image_path'] = $image['image_path'];
     }
   }
-  if ($file = file_save_upload('LD_bg_image')) {
-    $file->status = FILE_STATUS_PERMANENT;
-    if ($image = _ggp_theme_save_image($file)) {
-      // Put new image into settings
-      $form_state['values']['LD_bg_image_path'] = $image['image_path'];
-    }
-  }
-
-  $comment        = "/* HD Background */\n";
-  $path = $form_state['values']['HD_bg_image_path'];
-  $media_query = $form_state['values']['HD_media_query'];
-  $bg_color = $form_state['values']['HD_bg_color'];
-
-  $style = "\n" . '#incredible_bg {background: no-repeat fixed center top transparent url(' . file_create_url($path) . ')} body {background: ' . $bg_color . ';}';
-  $css = $comment . '@media ' . $media_query . ' {' . "\n" . $style . "\n" . '}';
-  $layouts[] = check_plain($css);
-
-  $comment        = "/* LD Background */\n";
-  $path = $form_state['values']['LD_bg_image_path'];
-  $media_query = $form_state['values']['LD_media_query'];
-
-  $style = "\n" . '#incredible_bg {background: no-repeat fixed center top transparent url(' . file_create_url($path) . ')} body {background: ' . $bg_color . ';}';
-  $css = $comment . '@media ' . $media_query . ' {' . "\n" . $style . "\n" . '}';
-  $layouts[] = check_plain($css);
-  $layout_data = implode("\n", $layouts);
-
-  $theme = $form_state['build_info']['args'][0];
-  $path  = "public://at_css";
-  file_prepare_directory($path, FILE_CREATE_DIRECTORY);
-
-
-  $file  = $theme . '.responsive.background.css';
-  $data  = $layout_data;
-  $filepath = $path . '/' . $file;
-  file_save_data($data, $filepath, FILE_EXISTS_REPLACE);
-
-  variable_set($theme . '_responsive_background_file_path', $path);
-  variable_set($theme . '_responsive_background_file_css', $file);
-
-  variable_set('custom_font', $values['custom_font']);
 }
 
 

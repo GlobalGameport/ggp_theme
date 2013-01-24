@@ -65,11 +65,7 @@
 
 ;----------// Site Features
 	features[] = logo
-	features[] = name
-	features[] = slogan
 	features[] = node_user_picture
-	features[] = comment_user_picture
-	features[] = comment_user_verification
 	features[] = favicon
 	features[] = main_menu
 	features[] = secondary_menu
@@ -146,7 +142,7 @@
 
   ; Login block options
   settings[horizontal_login_block]        = 0
-  settings[horizontal_login_block_enable] = 'on'
+  settings[horizontal_login_block_enable] = 'off'
 
   ; Comments
   settings[comments_hide_title] = 0
@@ -156,12 +152,24 @@
   settings[style_schemes]        = 'style-default.css'
 
   ; Extra CSS classes
-  settings[extra_page_classes]      = 0
-  settings[extra_article_classes]   = 0
-  settings[extra_comment_classes]   = 0
-  settings[extra_block_classes]     = 0
-  settings[extra_menu_classes]      = 0
-  settings[extra_item_list_classes] = 0
+  settings[extra_page_classes]      = 1
+  settings[extra_article_classes]   = 1
+  settings[extra_comment_classes]   = 1
+  settings[extra_block_classes]     = 1
+  settings[extra_menu_classes]      = 1
+  settings[extra_item_list_classes] = 1
 
   ; Extra markup
   settings[menu_item_span_elements] = 0
+
+  ; Fonts
+  settings[base_font_type] = 'gwf'
+  settings[base_font_gwf] = 'Shanti'
+  settings[page_title_font_type] = 'gwf'
+  settings[page_title_font_gwf] = 'Oswald'
+  settings[node_title_font_type] = 'gwf'
+  settings[node_title_font_gwf] = 'Oswald'
+  settings[block_title_font_type] = 'gwf'
+  settings[block_title_font_gwf] = 'Homenaje'
+
+  settings[bg_image_path] = 'profiles/ggp_net/themes/ggp_theme/images/default_bg.jpg'

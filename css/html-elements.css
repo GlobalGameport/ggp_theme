@@ -11,7 +11,9 @@ html {
   font-size: 81.3%;
 }
 body {
-  font-family: Shanti, Arial, clean, sans-serif;line-height: 1.5;background: #000;
+  font-family: Arial, clean, sans-serif;
+  line-height: 1.5;
+  background: #000;
 }
 h1 {
   font-size: 1.385em;

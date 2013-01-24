@@ -3,9 +3,7 @@
 	Drupal.ggp_theme_menu.animation = {show:{}, hide:{}, count:0};
 
 	Drupal.behaviors.ggp_theme_menu = {
-		attach: function() {
-			var settings = Drupal.settings.ggp_theme_menu;
-
+		attach: function (context, settings) {
 			// Sanitize by removing "expanded" on menus already marked "collapsed".
 			$('li.collapsed.expanded').removeClass('expanded');
 
@@ -18,6 +16,7 @@
 				); 
 		}
 	};
+
 	/**
 	 * Saves the dhtml_menu cookie.
 	 */
@@ -30,16 +29,15 @@
 	   $('li.expanded').each(function() {
 	     expanded.push(this.id);
 	   });
-	   console.log(collapsed);
 	   document.cookie = 'Drupal.collapsed_menus=' + collapsed.join(',') + ';path=/';
 	   document.cookie = 'Drupal.expanded_menus=' + expanded.join(',') + ';path=/';
 	 }
 
 	 Drupal.behaviors.backstretch = {
-	 	attach: function(context, settings) {
+	 	attach: function (context, settings) {
 	 		var pattern = /url\(|\)|"|'/g;
 			var bgUrl = $('#incredible_bg').css('backgroundImage').replace(pattern,"");
-	 		$('#incredible_bg', context).backstretch(bgUrl);
+	 		$('#incredible_bg', context).backstretch(settings.ggp_theme.background);
 	 	}
 	 };
 })(jQuery);

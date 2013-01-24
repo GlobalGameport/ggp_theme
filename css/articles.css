@@ -14,9 +14,12 @@ padding:0px;
 
 /* Title */
 .article-title {
+  font-family: Arial,serif;
   color:#ccc;
   padding:0 0 4px;
-  font-family: /*Homenaje,*/Oswald, Arial,serif; font-weight:400;text-shadow: 0px 1px 10px #555;line-height:135%;
+  font-weight:400;
+  text-shadow: 0px 1px 10px #555;
+  line-height:135%;
 }
 .article-title a:link,
 .article-title a:visited,
