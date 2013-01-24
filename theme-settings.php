@@ -7,7 +7,12 @@ include_once(drupal_get_path('theme', 'adaptivetheme') . '/inc/google.web.fonts.
 // Replace 'adaptivetheme_subtheme' with your themes name, eg:
 // function your_themes_name_form_system_theme_settings_alter(&$form, &$form_state)
 function ggp_theme_form_system_theme_settings_alter(&$form, &$form_state)  {
-
+  // General "alters" use a form id. Settings should not be set here. The only
+  // thing useful about this is if you need to alter the form for the running
+  // theme and *not* the theme setting.
+  if (isset($form_id)) {
+    return;
+  }
   // Css settings
   $form['at']['font'] = array(
     '#type' => 'fieldset',
