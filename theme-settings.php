@@ -296,7 +296,7 @@ function ggp_theme_settings_submit($form, &$form_state) {
   $settings = array();
   $values = $form_state['values'];
 
-  
+
   // Check for a new uploaded file, and use that if available.
   if ($file = file_save_upload('bg_image')) {
     $file->status = FILE_STATUS_PERMANENT;
@@ -317,7 +317,7 @@ function _ggp_theme_save_image($file, $bg_folder = 'public://backgrounds/', $bg_
   $setting = array();
 
   $file->status = FILE_STATUS_PERMANENT;
-  
+
   // Copy temporary image into banner folder
   if ($img = file_copy($file, $destination, FILE_EXISTS_REPLACE)) {
     // Generate image thumb
@@ -327,10 +327,10 @@ function _ggp_theme_save_image($file, $bg_folder = 'public://backgrounds/', $bg_
     image_save($image);
 
     // Set image info
-    $setting['image_path'] = $destination;
+    $setting['image_path'] = file_create_url($destination);
 
     return $setting;
   }
-  
+
   return FALSE;
 }
