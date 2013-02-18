@@ -13,7 +13,7 @@ function ggp_theme_preprocess_html(&$vars) {
     'ggp_theme.responsive.gpanels.css'
   );
   load_subtheme_media_queries($media_queries_css, 'ggp_theme');
-  drupal_add_js(array('ggp_theme' => array('background' => theme_get_setting('bg_image_path'))), 'setting');
+  drupal_add_js(array('ggp_theme' => array('background' => file_create_url(theme_get_setting('bg_image_path')))), 'setting');
 
    // Fonts
   $fonts = array(

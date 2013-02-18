@@ -327,7 +327,7 @@ function _ggp_theme_save_image($file, $bg_folder = 'public://backgrounds/', $bg_
     image_save($image);
 
     // Set image info
-    $setting['image_path'] = file_create_url($destination);
+    $setting['image_path'] = $destination;
 
     return $setting;
   }
