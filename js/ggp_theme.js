@@ -13,7 +13,7 @@
 						$(this).parent('li').toggleClass('collapsed expanded');
 						Drupal.ggp_theme_menu.cookieSet();
 					}
-				); 
+				);
 		}
 	};
 
@@ -35,9 +35,9 @@
 
 	 Drupal.behaviors.backstretch = {
 	 	attach: function (context, settings) {
-	 		var pattern = /url\(|\)|"|'/g;
-			var bgUrl = $('#incredible_bg').css('backgroundImage').replace(pattern,"");
-	 		$.backstretch(settings.ggp_theme.background);
+	 		if (typeof settings.ggp_theme != 'undefined') {
+	 			$.backstretch(settings.ggp_theme.background);
+	 	  }
 	 	}
 	 };
 })(jQuery);
