@@ -281,8 +281,10 @@ function ggp_theme_media_gallery_item($variables) {
 
   // FANCYBOX HACK
   if (!isset($variables['gallery'])) {
-    preg_match('|\/sites\/(.*)\/files\/styles\/media_gallery_thumbnail\/public\/([^\"]*)|', $image, $matches);
-    $link_path = 'sites/'.$matches[1].'/files/styles/media_gallery_large/public/' . $matches[2];
+    $url = '';
+    preg_match('|src="([\S]*)"|', $image, $url);
+    $path = ggp_theme_get_file_scheme($url[1]);
+    $link_path = image_style_url('media_gallery_large', $path);
     $attributes['class'][] = 'fancybox';
     $attributes['rel'][] = 'gallery';
   }
@@ -291,4 +293,28 @@ function ggp_theme_media_gallery_item($variables) {
   $item .= empty($variables['no_link']) ? l($image, $link_path, array('html' => TRUE, 'attributes' => $attributes)) : $image;
   $item .= '</div></div><div class="bottom"><div class="bottom-inset-1"><div class="bottom-inset-2"></div></div></div></div>';
   return $item;
+}
+
+/**
+ * Resolve file path relative to public folder from absolute URI
+ * @param  String $uri Absolute URI (e.g. "http://example.com/sites/example.com/files/styles/thumbnails/public/image.png").
+ * @return String      Shortend Path (e.g. "image.png")
+ */
+function ggp_theme_get_file_scheme($uri) {
+  $uri = strtok($uri, '?');
+  global $base_url;
+  $prefix = $base_url . '/' . DrupalPublicStreamWrapper::getDirectoryPath();
+  if ( !strncmp( $uri, $prefix, strlen($prefix)) ) {
+    $path = substr($uri, strlen($prefix)+1);
+    if(!strncmp($path, 'style/', 5)){
+        $path = substr($path, 7);
+        $path = strstr($path, '/');
+        $path = substr($path, 1);
+    }
+    if(!strncmp($path, 'public/', 6)){
+       $path = substr($path, 7);
+     }
+    return $path;
+  }
+  return $uri;
 }
