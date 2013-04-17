@@ -160,33 +160,41 @@ function ggp_theme_breadcrumb($vars) {
 /**
  * Adds collapse to Menu.
  */
+function ggp_theme_preprocess_menu_link(&$variables) {
+  $element = $variables['element'];
+  $sub_menu = '';
+
+  // If there are children, but they were not loaded, load them.
+  if ($element['#original_link']['has_children'] && !$element['#below']) {
+   $variables['element']['#below'] = _menu_subtree($element['#original_link']['menu_name'], $element['#original_link']['mlid']);
+  }
+
+  $variables['element']['#attributes']['id'] = 'menu-item-' . _unique_id($element['#original_link']['mlid']);
+
+  // If the current item can expand, and is neither saved as open nor in the active trail, close it.
+  if ($element['#original_link']['has_children'] && !$element['#original_link']['in_active_trail']) {
+    $variables['element']['#attributes']['class'][] = 'collapsed';
+  }
+}
+
 function ggp_theme_menu_link(array $variables) {
   $element = $variables['element'];
   $sub_menu = '';
   $collapse = '';
-  $collapsed = false;
 
-  // If there are children, but they were not loaded, load them.
-  if ($element['#original_link']['has_children'] && empty($element['#below'])) {
-   $element['#below'] = _menu_subtree($element['#original_link']['menu_name'], $element['#original_link']['mlid']);
-  }
-
-  $element['#attributes']['id'] = 'menu-item-' . _unique_id($element['#original_link']['mlid']);
-
-  // If the current item can expand, and is neither saved as open nor in the active trail, close it.
-  if ($element['#original_link']['has_children'] && !$element['#original_link']['in_active_trail'] ) {
-    $variables['element']['#attributes']['class'][] = 'collapsed';
-    $collapsed = true;
-  }
 
   if ($element['#below']) {
-    $collapse = (!$collapsed) ? '<span class="collapse"></span>': '<span class="expand"></span>';
+    if ($element['#original_link']['has_children'] && !$element['#original_link']['in_active_trail']) {
+      $collapse = '<span class="expand"></span>';
+    } else {
+      $collapse = '<span class="collapse"></span>';
+    }
     $sub_menu = drupal_render($element['#below']);
   }
-
   $output = l($element['#title'], $element['#href'], $element['#localized_options']);
-  return '<li' . drupal_attributes($element['#attributes']) . '>'. $collapse . $output . $sub_menu . "</li>\n";
+  return '<li' . drupal_attributes($element['#attributes']) . '>' . $collapse .  $output . $sub_menu . "</li>\n";
 }
+
 /**
  * Traverses the menu tree and returns the sub-tree of the item
  * indicated by the parameter.
