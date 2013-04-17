@@ -162,29 +162,31 @@ function ggp_theme_breadcrumb($vars) {
  */
 function ggp_theme_preprocess_menu_link(&$variables) {
   $element = $variables['element'];
+  $l = $element['#original_link'];
   $sub_menu = '';
 
   // If there are children, but they were not loaded, load them.
-  if ($element['#original_link']['has_children'] && !$element['#below']) {
+  if ($l['has_children'] && !$element['#below']) {
    $variables['element']['#below'] = _menu_subtree($element['#original_link']['menu_name'], $element['#original_link']['mlid']);
   }
 
   $variables['element']['#attributes']['id'] = 'menu-item-' . _unique_id($element['#original_link']['mlid']);
 
   // If the current item can expand, and is neither saved as open nor in the active trail, close it.
-  if ($element['#original_link']['has_children'] && !$element['#original_link']['in_active_trail']) {
+  if ($l['has_children'] && !$l['in_active_trail'] && !$l['expanded']) {
     $variables['element']['#attributes']['class'][] = 'collapsed';
   }
 }
 
 function ggp_theme_menu_link(array $variables) {
   $element = $variables['element'];
+  $l = $element['#original_link'];
   $sub_menu = '';
   $collapse = '';
 
 
   if ($element['#below']) {
-    if ($element['#original_link']['has_children'] && !$element['#original_link']['in_active_trail']) {
+    if ($l['has_children'] && !$l['in_active_trail'] && !$l['expanded']) {
       $collapse = '<span class="expand"></span>';
     } else {
       $collapse = '<span class="collapse"></span>';
