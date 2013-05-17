@@ -2,7 +2,7 @@
 ;----------// Theme Information
 
 	name = GGP Standard Theme
-	description = Tabellenloses standart theme für GGP basierend auf dem 960grid System
+	description = Tabellenloses standart theme für GGP basierend auf AdaptiveTheme-7.x-3.x
 	core = 7.x
 	screenshot = screenshot.png
 	engine = phptemplate
@@ -75,19 +75,19 @@
   ; Layout settings
 
   ; Standard bigscreen
-  settings[bigscreen_layout]         = 'three-col-grail'
-  settings[bigscreen_page_unit]      = 'px'
-  settings[bigscreen_sidebar_unit]   = 'px'
-  settings[bigscreen_max_width_unit] = 'px'
+  settings[bigscreen_layout]         = 'three_col_grail'
   settings[bigscreen_page_width]     = 1088
+  settings[bigscreen_page_unit]      = 'px'
   settings[bigscreen_sidebar_first]  = 184
   settings[bigscreen_sidebar_second] = 324
+  settings[bigscreen_sidebar_unit]   = 'px'
   settings[bigscreen_set_max_width]  = 0
   settings[bigscreen_max_width]      = 1088
+  settings[bigscreen_max_width_unit] = 'px'
   settings[bigscreen_media_query]    = 'only screen and (min-width:1025px)'
 
   ; Tablet landscape
-  settings[tablet_landscape_layout]         = 'two-col-stack'
+  settings[tablet_landscape_layout]         = 'two_col_stack'
   settings[tablet_landscape_page_unit]      = 'px'
   settings[tablet_landscape_sidebar_unit]   = 'px'
   settings[tablet_landscape_max_width_unit] = 'px'
@@ -99,7 +99,7 @@
   settings[tablet_landscape_media_query]    = 'only screen and (min-width:769px) and (max-width:1024px)'
 
   ; Tablet portrait
-  settings[tablet_portrait_layout]         = 'one-col-vert'
+  settings[tablet_portrait_layout]         = 'one_col_vert'
   settings[tablet_portrait_page_unit]      = '%'
   settings[tablet_portrait_sidebar_unit]   = '%'
   settings[tablet_portrait_max_width_unit] = 'px'
@@ -111,7 +111,7 @@
   settings[tablet_portrait_media_query]    = 'only screen and (min-width:481px) and (max-width:768px)'
 
   ; smartphone landscape
-  settings[smartphone_landscape_layout]         = 'one-col-vert'
+  settings[smartphone_landscape_layout]         = 'one_col_vert'
   settings[smartphone_landscape_page_unit]      = '%'
   settings[smartphone_landscape_sidebar_unit]   = '%'
   settings[smartphone_landscape_max_width_unit] = 'px'
