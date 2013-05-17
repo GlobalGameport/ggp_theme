@@ -78,7 +78,7 @@ function ggp_theme_preprocess_node(&$vars) {
   $vars['publication_date'] = '<time datetime="' . $vars['datetime'] . '">' . $vars['date'] . '</time>';
    // Last updated formatted in time element
   $vars['last_update'] = '<time datetime="' . $vars['datetime_updated'] . '">' . $vars['custom_date_and_time'] . '</time>';
-  
+
   // Build the submitted variable used by default in node templates
   if (variable_get('node_submitted_' . $vars['node']->type, TRUE)) {
     $vars['submitted'] = t('Submitted by !username on !datetime',
@@ -96,6 +96,13 @@ function ggp_theme_preprocess_node(&$vars) {
 
 function ggp_theme_process_node(&$vars) {
 }
+function ggp_theme_preprocess_username(&$variables) {
+  if (isset($variables['attributes_array']['xml:lang'])) {
+    $variables['lang'] = $variables['xml:lang'];
+    unset($variables['xml:lang']);
+  }
+}
+
 // */
 
 /**
