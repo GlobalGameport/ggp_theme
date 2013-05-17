@@ -98,8 +98,8 @@ function ggp_theme_process_node(&$vars) {
 }
 function ggp_theme_preprocess_username(&$variables) {
   if (isset($variables['attributes_array']['xml:lang'])) {
-    $variables['lang'] = $variables['xml:lang'];
-    unset($variables['xml:lang']);
+    $variables['attributes_array']['lang'] = $variables['attributes_array']['xml:lang'];
+    unset($variables['attributes_array']['xml:lang']);
   }
 }
 
