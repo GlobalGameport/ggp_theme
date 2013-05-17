@@ -153,3 +153,21 @@ header[role=banner],
   overflow: visible;
   word-wrap: break-word;
 }
+
+/* Add gutters */
+.block-inner,
+.region-help,
+.messages,
+#primary-nav,
+#secondary-nav,
+#breadcrumb,
+#main-content > header,
+#branding,
+#attribution {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+/* Strip block margin inside content column area. */
+.content-inner .block {
+  margin: 0;
+}
