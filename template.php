@@ -132,6 +132,8 @@ function ggp_theme_preprocess_block(&$vars) {
 }
 
 function ggp_theme_process_block(&$vars) {
+  $vars['content_attributes'] = empty($vars['content_attributes_array']) ? '' : drupal_attributes($vars['content_attributes_array']);
+  $vars['content_processed'] = '<div' . $vars['content_attributes'] . '>' . $vars['content'] . '</div>';
 }
 
 /**
