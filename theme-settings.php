@@ -37,8 +37,7 @@ function ggp_theme_form_system_theme_settings_alter(&$form, &$form_state)  {
   );
   $form['at-settings']['ggp_customization'] = array(
     '#type' => 'fieldset',
-    '#title' => t('More Costumizations'),
-    '#description' => t('Custom CSS, etc.'),
+    '#title' => t('More customizations...'),
   );
 
   $form['at-settings']['ggp_customization']['custom_css'] = array(
