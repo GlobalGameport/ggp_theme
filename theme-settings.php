@@ -4,8 +4,10 @@
 // Include Google Fonts Stuff
 include_once(drupal_get_path('theme', 'adaptivetheme') . '/inc/google.web.fonts.inc');
 
-// Replace 'adaptivetheme_subtheme' with your themes name, eg:
-// function your_themes_name_form_system_theme_settings_alter(&$form, &$form_state)
+/**
+ * Alter the theme setting sof base theme adaptivetheme.
+ * @todo rework font include
+ */
 function ggp_theme_form_system_theme_settings_alter(&$form, &$form_state)  {
   // General "alters" use a form id. Settings should not be set here. The only
   // thing useful about this is if you need to alter the form for the running
@@ -284,6 +286,18 @@ function ggp_theme_form_system_theme_settings_alter(&$form, &$form_state)  {
     '#description' => t('If you don\'t have direct file access to the server, use this field to upload your background image.'),
     '#maxlength' => 40,
   );
+  $form['at']['ggp_customization'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('More Costumizations'),
+    '#description' => t('Custom CSS, etc.'),
+  );
+
+  $form['at']['ggp_customization']['custom_css'] = array(
+    '#type'=> 'text',
+    '#title' => t('Custom CSS'),
+    '#description' => t('Set custom CSS which will be inclueded in head'),
+
+  );
 
   $form['#submit'][] = 'ggp_theme_settings_submit';
   $form['at']['background']['#element_validate'][] = 'ggp_theme_settings_submit';
@@ -305,6 +319,20 @@ function ggp_theme_settings_submit($form, &$form_state) {
       $form_state['values']['bg_image_path'] = $image['image_path'];
     }
   }
+  
+  $comment = "/* Custom CSS Settings */\n";
+  $css_raw = $comment . $values['custom_css'];
+  $css = check_plain($css_raw);
+  $theme = $form_stte['build_info'][0];
+  $path = 'public://at_css';
+  file_prepare_directory($path, FILE_CREATE_DIRECTORY);
+
+  $file = $theme . '.custom_theme.css';
+  $filepath = $path . '/' . $file;
+  file_save_data($css, $filepath, FILE_EXISTS_REPLACE);
+
+  variable_set($theme . '_custom_file_path', $path);
+  variable_set($theme . '_custom_file_css', $file);
 }
 
 

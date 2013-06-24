@@ -31,6 +31,24 @@ function ggp_theme_preprocess_html(&$vars) {
       $vars['classes_array'][] = $family;
     }
   }
+  global $theme;
+  $path = "public://at_css";
+
+  $custom_css = $theme . '_custom_file_css';
+  $file  = variable_get($custom_css);
+  if(!empty($file)) {
+    $filepath = $path . "/" . $file;
+    if(file_exists($filepath)) {
+      drupal_add_css($filepath, array(
+        'preprocess' => variable_get('preprocess_css', '') == 1 ?TRUE : FALSE,
+        'group' => CSS_THEME,
+        'edia' => 'all',
+        'every_page' => TRUE,
+        'weight' => 1000,
+        )
+      );
+    }
+  }
  /**
   * Load IE specific stylesheets
   * AT automates adding IE stylesheets, simply add to the array using

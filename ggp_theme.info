@@ -2,7 +2,7 @@
 ;----------// Theme Information
 
 	name = GGP Standard Theme
-	description = Tabellenloses standart theme für GGP basierend auf AdaptiveTheme-7.x-3.x
+	description = Tabellenloses standard theme für GGP basierend auf AdaptiveTheme-7.x-3.x
 	core = 7.x
 	screenshot = screenshot.png
 	engine = phptemplate
