@@ -15,22 +15,6 @@ function ggp_theme_preprocess_html(&$vars) {
   load_subtheme_media_queries($media_queries_css, 'ggp_theme');
   drupal_add_js(array('ggp_theme' => array('background' => file_create_url(theme_get_setting('bg_image_path')))), 'setting');
 
-   // Fonts
-  $fonts = array(
-    'bf'  => 'base_font',
-    'snf' => 'site_name_font',
-    'ssf' => 'site_slogan_font',
-    'ptf' => 'page_title_font',
-    'ntf' => 'node_title_font',
-    'ctf' => 'comment_title_font',
-    'btf' => 'block_title_font'
-  );
-  $families = get_font_families($fonts, $theme_key);
-  if (!empty($families)) {
-    foreach ($families as $family) {
-      $vars['classes_array'][] = $family;
-    }
-  }
   global $theme;
   $path = "public://at_css";
 
