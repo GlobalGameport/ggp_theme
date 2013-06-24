@@ -43,7 +43,7 @@ function ggp_theme_form_system_theme_settings_alter(&$form, &$form_state)  {
   $form['at-settings']['ggp_customization']['custom_css'] = array(
     '#type'=> 'textarea',
     '#title' => t('Custom CSS'),
-    '#description' => t('Set custom CSS which will be inclueded in head'),
+    '#description' => t('Set custom CSS which will be included in head'),
 
   );
 
