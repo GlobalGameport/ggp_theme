@@ -17,31 +17,31 @@ function ggp_theme_form_system_theme_settings_alter(&$form, &$form_state)  {
   }
 
   // Background Image
-  $form['at']['background'] = array(
+  $form['at-settings']['background'] = array(
     '#type' => 'fieldset',
     '#title' => t('Background Image'),
     '#description' => t('<h3>Background Image</h3>'),
   );
-  $form['at']['background']['bg_image_path'] = array(
+  $form['at-settings']['background']['bg_image_path'] = array(
     '#type' => 'textfield',
     '#size' => 60,
     '#titile' => t('Path to custom background image'),
     '#description' => t('The path to the file you would like to use as your background image.'),
     '#value' => theme_get_setting('bg_image_path') ,
   );
-  $form['at']['background']['bg_image'] = array(
+  $form['at-settings']['background']['bg_image'] = array(
     '#type' => 'file',
     '#title' => t('Upload background image'),
     '#description' => t('If you don\'t have direct file access to the server, use this field to upload your background image.'),
     '#maxlength' => 40,
   );
-  $form['at']['ggp_customization'] = array(
+  $form['at-settings']['ggp_customization'] = array(
     '#type' => 'fieldset',
     '#title' => t('More Costumizations'),
     '#description' => t('Custom CSS, etc.'),
   );
 
-  $form['at']['ggp_customization']['custom_css'] = array(
+  $form['at-settings']['ggp_customization']['custom_css'] = array(
     '#type'=> 'textfield',
     '#title' => t('Custom CSS'),
     '#description' => t('Set custom CSS which will be inclueded in head'),
