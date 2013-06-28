@@ -65,30 +65,7 @@ a:hover.latestposts { text-decoration:none;color:#fff;background:rgba(0,0,0,0.30
 .copyright a:link, .copyright a:visited {color:#727070;}
 .copyright a:hover { text-decoration:none;color:#ccc; }
 
-/* Folge uns */
-#folge_uns {width:216px;display:block;margin:-215px 0 0 -10px;padding:0;float:left;}
-.Lmenu_folge_uns div {height:32px;}
-a .pop_info {
-  visibility:hidden;
-  background:none;
-  color:#eee;
-  font:bold 0.923em/14px arial,serif;
-  margin-left:31px;
-  display:block;
-  height:30px;
-  vertical-align:middle;
-  padding:0 5px;
-}
-a:hover .pop_info {visibility:visible;background:rgba(0,0,0,0.60);}
 
-a#twitter1:link, a#twitter1:visited { margin:0;width:166px;height:32px;display:block;background: url(../images/2013_socials.png) no-repeat left 0; }
-a#twitter1:hover  { text-decoration: none;background-position:left -96px; }
-a#youtube1:link, a#youtube1:visited { margin:0;width:166px;height:32px;display:block;background: url(../images/2013_socials.png) no-repeat left -32px; }
-a#youtube1:hover  { text-decoration: none;background-position:left -128px; }
-a#rss1:link, a#rss1:visited { mmargin:0;width:166px;height:32px;display:block;background: url(../images/2013_socials.png) no-repeat left -64px; }
-a#rss1:hover { text-decoration: none;background-position:left -160px; }
- 
- 
  
  
  
