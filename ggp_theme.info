@@ -72,8 +72,14 @@
 
 ;----------// Theme Settings
 
+
+
+  plugins[page_layout][layouts] = layouts/core
+
+  ; plugins[gpanels][layouts] = layouts/gpanels
+
   ; Layout settings
-  
+
   ; CSS
   settings[disable_responsive_styles]     = 0
   settings[enable_custom_media_queries]   = 1
@@ -123,7 +129,7 @@
   settings[bigscreen_media_query]    = 'only screen and (min-width:1025px)'
 
   ; Tablet landscape
-  settings[tablet_landscape_layout]         = 'two_col_stack'
+  settings[tablet_landscape_layout]         = 'two_sidebars_left_stack'
   settings[tablet_landscape_page_unit]      = 'px'
   settings[tablet_landscape_sidebar_unit]   = 'px'
   settings[tablet_landscape_max_width_unit] = 'px'
@@ -161,11 +167,6 @@
   ; smartphone portrait
   settings[smartphone_portrait_media_query] = 'only screen and (max-width:320px)'
 
-  ; Breadcrumb
-  settings[breadcrumb_display]   = 'yes'
-  settings[breadcrumb_separator] = ' &#187; '
-  settings[breadcrumb_home]      = 0
-
   ; Search
   settings[display_search_form_label] = 1
   settings[search_snippet]            = 1
@@ -195,7 +196,7 @@
   settings[bg_image_path] = 'profiles/ggp_net/themes/ggp_theme/images/default_bg.jpg'
 
   ; Font type
-  settings[base_font_type]           = '<gwf'
+  settings[base_font_type]           = 'gwf'
   settings[base_font_gwf] = 'Shanti'
   settings[site_name_font_type]      = '<none>'
   settings[site_slogan_font_type]    = '<none>'

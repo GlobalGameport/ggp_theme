@@ -8,7 +8,7 @@ include_once(drupal_get_path('theme', 'adaptivetheme') . '/inc/google.web.fonts.
  * Alter the theme setting sof base theme adaptivetheme.
  * @todo rework font include
  */
-function ggp_theme_form_system_theme_settings_alter(&$form, &$form_state)  {
+function ggp_theme_form_system_theme_settings_alter(&$form, &$form_state, $form_id = NULL)  {
   // General "alters" use a form id. Settings should not be set here. The only
   // thing useful about this is if you need to alter the form for the running
   // theme and *not* the theme setting.
@@ -67,11 +67,11 @@ function ggp_theme_settings_submit($form, &$form_state) {
       $form_state['values']['bg_image_path'] = $image['image_path'];
     }
   }
-  
+
   $comment = "/* Custom CSS Settings */\n";
   $css_raw = $comment . $values['custom_css'];
   $css = check_plain($css_raw);
-  $theme = $form_stte['build_info'][0];
+  $theme = $form_state['build_info']['args'][0];
   $path = 'public://at_css';
   file_prepare_directory($path, FILE_CREATE_DIRECTORY);
 
@@ -96,12 +96,6 @@ function _ggp_theme_save_image($file, $bg_folder = 'public://backgrounds/', $bg_
 
   // Copy temporary image into banner folder
   if ($img = file_copy($file, $destination, FILE_EXISTS_REPLACE)) {
-    // Generate image thumb
-    $image = image_load($destination);
-    $small_img = image_scale($image, 300, 100);
-    $image->source = $bg_thumb_folder . $parts['basename'];
-    image_save($image);
-
     // Set image info
     $setting['image_path'] = $destination;
 
