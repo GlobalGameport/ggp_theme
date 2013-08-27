@@ -74,7 +74,7 @@
 
 
 
-  plugins[page_layout][layouts] = layouts/core
+  ; plugins[page_layout][layouts] = layouts/core
 
   ; plugins[gpanels][layouts] = layouts/gpanels
 
