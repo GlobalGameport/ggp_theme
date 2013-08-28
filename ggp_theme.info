@@ -134,7 +134,7 @@
   settings[tablet_landscape_sidebar_unit]   = 'px'
   settings[tablet_landscape_max_width_unit] = 'px'
   settings[tablet_landscape_page_width]     = 1024
-  settings[tablet_landscape_sidebar_first]  = 120
+  settings[tablet_landscape_sidebar_first]  = 184
   settings[tablet_landscape_sidebar_second] = 200
   settings[tablet_landscape_set_max_width]  = 0
   settings[tablet_landscape_max_width]      = 960

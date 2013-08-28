@@ -182,8 +182,8 @@ div.notice {
   border:2px solid #d33682;
 }
 div.status {
-  background:transparent;
-  border:2px solid #859900;
+  background:rgba(10, 27, 10, 0.8);
+  border:1px solid rgb(187, 238, 119);
   color:#839496;
 }
 div.help {
@@ -537,4 +537,14 @@ form#views-ui-preview-form,
 #center form#views-ui-preview-form,
 .vertical-tabs-list {
   border-color:#073642;
+}
+.social_share_privacy_area li.settings_info .settings_info_menu {
+  display:block;
+}
+.social_share_privacy_area li.help_info {
+  display: list-item;
+}
+.social_share_privacy_area li.settings_info {
+  display:list-item;
+  width: 55px;
 }
